@@ -1,0 +1,3 @@
+Do $cinst.$DefRowSchema(pRefRowSchema)
+Do pRefRowSchema.$assigncols(123,"Name 123","mail@mail.pt",51,kTrue,#D)
+Quit method

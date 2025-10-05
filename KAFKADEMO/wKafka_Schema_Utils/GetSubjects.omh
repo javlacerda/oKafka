@@ -1,0 +1,26 @@
+Do ivLstSubjects.$clear()
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("url",kCharacter,kSimplechar)
+
+Calculate lvRowParam.url as ivcSchemaRegistryUrl
+
+Do ivoKafka.$callmethod("okafka","get_subjects",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",lvcErrorText))
+Else
+	If ivRowResult.success
+		Set reference lvRefLst to ivRowResult.subjects
+		If not(isclear(lvRefLst))
+			For lvRefLst.$line from 1 to lvRefLst.$linecount step 1
+				Do ivLstSubjects.$add(lvRefLst.C1)
+			End For
+		End If
+		
+		Do ivLstSubjects.$sort($ref.C1,kFalse)
+	End If
+	
+	Do $cwind.$showmessage(con(ivLstSubjects.$linecount," subjects retrieved!"),"Info",kMsgIcon)
+End If
+
+Redraw (Refresh now) hlbSubjects
+Quit method

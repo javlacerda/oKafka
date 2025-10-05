@@ -1,0 +1,18 @@
+On evClick ## Event Parameters - pRow( Itemreference )
+	If ivLstMessagesOcc.$linecount=0
+		Do $cwind.$showmessage("No messages!","Error",kMsgOK+kMsgIcon)
+		Quit event handler
+	End If
+	
+	Calculate lvnLastLine as ivLstMessagesOcc.$linecount
+	
+	Do $cwind.$showmessage(con("Commit offset ",ivLstMessagesOcc.[lvnLastLine].offset,"?"),"Confirmation",kMsgNoYes+kMsgIcon) Returns lvbOk
+	If not(lvbOk)
+		Quit event handler
+	End If
+	
+	Do method CommitOffset (ivLstMessagesOcc.[lvnLastLine].offset,ivLstMessagesOcc.[lvnLastLine].partition) Returns lvbOk
+	If lvbOk
+		Do $cwind.$showmessage("Offset commited!","Info",kMsgIcon)
+	End If
+	Quit method

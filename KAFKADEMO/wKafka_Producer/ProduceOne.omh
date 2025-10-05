@@ -1,0 +1,19 @@
+Do method DefineRowParam (lvRowParam)
+
+Calculate lvRowParam.server as ivcServer
+Calculate lvRowParam.topic as ivcTopic
+Calculate lvRowParam.partition as ivnPartition
+Calculate lvRowParam.key as ivcKey
+Calculate lvRowParam.message as ivcMessage
+Calculate lvRowParam.config as ivLstConfig
+Calculate lvRowParam.headers as ivLstHeaders
+
+Do ivoKafka.$callmethod("okafka","produce_one",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+Else
+	If ivRowResult.success
+		Do $cwind.$showmessage(con("Success!// //Offset: ",ivRowResult.offset,"//Partition: ",ivRowResult.partition,"//Timestamp: ",ivRowResult.timestamp),"Info",kMsgIcon)
+	End If
+End If
+Quit method

@@ -1,0 +1,6 @@
+Do pRefRowSchemaInfo.$define()
+Do pRefRowSchemaInfo.$cols.$add("id",kInteger,k32bitint)
+Do pRefRowSchemaInfo.$cols.$add("version",kInteger,k32bitint)
+Do pRefRowSchemaInfo.$cols.$add("type",kCharacter,kSimplechar)
+Do pRefRowSchemaInfo.$cols.$add("schema",kCharacter,kSimplechar)
+Quit method

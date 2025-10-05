@@ -1,0 +1,8 @@
+Do $cinst.$DefLstHeaders(pRefLstHeaders)
+
+Do pRefLstHeaders.$add("k1","value 1")
+Do pRefLstHeaders.$add("k2","Value 2")
+Do pRefLstHeaders.$add("k3","value three")
+Do pRefLstHeaders.$add("k4","VALUE 4")
+Calculate pRefLstHeaders.$line as 1
+Quit method

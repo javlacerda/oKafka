@@ -1,0 +1,34 @@
+Begin text block
+Line:{
+Line:   "type": "record",
+Line:   "name": "user",
+Line:   "fields": [
+Line:       {
+Line:           "name": "id",
+Line:           "type": "int"
+Line:       },
+Line:       {
+Line:           "name": "name",
+Line:           "type": "string"
+Line:       },
+Line:       {
+Line:           "name": "email",
+Line:           "type": "string"
+Line:       },
+Line:       {
+Line:           "name": "age",
+Line:           "type": "int"
+Line:       },
+Line:       {
+Line:           "name": "active",
+Line:           "type": "boolean"
+Line:       },
+Line:       {
+Line:           "name": "dateCreated",
+Line:           "type": "string"
+Line:       }
+Line:   ]
+Line:}
+End text block
+Get text block pcRefSchemaStr
+Quit method

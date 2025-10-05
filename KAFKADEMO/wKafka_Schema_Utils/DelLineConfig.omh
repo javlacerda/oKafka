@@ -1,0 +1,7 @@
+If $ctarget.$container().$ident=$cobj.$container().$ident
+	If ivLstConfig.$linecount>0
+		Do ivLstConfig.$remove(ivLstConfig.$line)
+		Redraw (Refresh now) cgConfig
+	End If
+End If
+Quit method

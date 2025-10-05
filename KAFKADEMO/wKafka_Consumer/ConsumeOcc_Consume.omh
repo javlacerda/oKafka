@@ -1,0 +1,34 @@
+Do lvRowParam.$define()
+Do lvLstHeaders.$copydefinition(ivLstHeaders)
+
+Do ivoKafka.$callmethod("okafka","consume",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+Else
+	If ivbSuccess
+		If ivRowResult.hasMessage
+			Do ivLstMessagesOcc.$add()
+			Calculate ivLstMessagesOcc.$line as ivLstMessagesOcc.$linecount
+			Calculate ivLstMessagesOcc.offset as ivRowResult.offset
+			Calculate ivLstMessagesOcc.partition as ivRowResult.partition
+			Calculate ivLstMessagesOcc.topic as ivRowResult.topic
+			Calculate ivLstMessagesOcc.key as ivRowResult.key
+			Calculate ivLstMessagesOcc.timestamp as ivRowResult.timestamp
+			Calculate ivLstMessagesOcc.message as ivRowResult.value
+			
+			Set reference lvRefHeaders to ivRowResult.headers
+			Do lvLstHeaders.$clear()
+			For lvnLoopCol from 1 to lvRefHeaders.$colcount step 1
+				Calculate lvcColName as lvRefHeaders.$cols.[lvnLoopCol].$name
+				Do lvLstHeaders.$add(lvcColName,lvRefHeaders.[lvcColName])
+			End For
+			
+			Calculate ivLstMessagesOcc.headers as lvLstHeaders
+		Else
+			Do $cwind.$showmessage("No messages in the queue!","Info",kMsgNoYes)
+		End If
+	End If
+End If
+
+Redraw (Refresh now) cgMessagesOcc
+Quit method

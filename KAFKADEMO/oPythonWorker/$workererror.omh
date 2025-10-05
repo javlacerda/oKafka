@@ -1,0 +1,2 @@
+Do $ctask.$showmessage(con("Python Worker Critical Error: ",pError.errorInfo))
+Quit method

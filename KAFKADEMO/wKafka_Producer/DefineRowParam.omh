@@ -1,0 +1,9 @@
+Do pRefRowParam.$define()
+Do pRefRowParam.$cols.$add("server",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("topic",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("partition",kInteger,k32bitint)
+Do pRefRowParam.$cols.$add("key",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("message",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("headers",kList)
+Do pRefRowParam.$cols.$add("config",kList)
+Quit method

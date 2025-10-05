@@ -1,0 +1,14 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("timeout",kInteger,k32bitint)
+
+Calculate lvRowParam.timeout as ivnTimeout
+
+Do ivoKafka.$callmethod("okafka","set_timeout",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+Else
+	If ivRowResult.success
+		Do $cwind.$showmessage("Success!","Info",kMsgIcon)
+	End If
+End If
+Quit method

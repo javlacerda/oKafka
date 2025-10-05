@@ -1,0 +1,10 @@
+If ivLstConfig.$linecount=0
+	Do ivLstConfig.$add()
+	Calculate ivLstConfig.$line as ivLstConfig.$linecount
+Else
+	Do ivLstConfig.$addbefore(ivLstConfig.$line)
+End If
+
+Redraw (Refresh now) cgConfig
+Queue set current field efItemConfig
+Quit method

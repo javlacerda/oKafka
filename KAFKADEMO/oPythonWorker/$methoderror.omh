@@ -1,0 +1,16 @@
+If not(isclear(ivRefCallingInstance))
+	If ivRefCallingInstance.$OnKafkaError.$cando
+		Do ivRefCallingInstance.$OnKafkaError(pError)
+		Calculate lvbShow as kFalse
+	End If
+End If
+
+If lvbShow
+	For lvnLoop from 1 to pError.$colcount step 1
+		Calculate lvcFieldName as pError.[lvnLoop].$name
+		Calculate lvcMsg as con(lvcMsg,lvcFieldName,": ",pError.[lvcFieldName],"//")
+	End For
+	
+	Do $ctask.$showmessage(con("Error// //",lvcMsg))
+End If
+Quit method

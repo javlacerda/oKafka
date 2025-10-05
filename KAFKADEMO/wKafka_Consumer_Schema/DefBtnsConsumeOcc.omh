@@ -1,0 +1,9 @@
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Open.$enabled as not(ivbConsumerOpen)
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Open.$active as not(ivbConsumerOpen)
+
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Consume.$enabled as ivbConsumerOpen
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Consume.$active as ivbConsumerOpen
+
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Close.$enabled as ivbConsumerOpen
+Calculate $cwind.$objs.tpPrinc.$objs.pbConsumeOcc_Close.$active as ivbConsumerOpen
+Quit method

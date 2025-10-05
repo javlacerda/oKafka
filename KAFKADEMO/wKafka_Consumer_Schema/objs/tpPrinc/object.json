@@ -1,0 +1,109 @@
+{
+	"ident": 1044,
+	"order": 1,
+	"objtype": "kTabPane",
+	"properties": {
+		"active": true,
+		"alpha": 255,
+		"animateui": false,
+		"backcolor": "kColorWindow",
+		"backgroundtheme": "kBGThemeParent",
+		"backpattern": 0,
+		"candropcursor": 0,
+		"componentinfo": {
+
+		},
+		"contextmenu": "",
+		"cursor": 0,
+		"desgroup": 0,
+		"designactive": true,
+		"deslock": false,
+		"disablefocus": false,
+		"dragborder": false,
+		"dragiconid": 0,
+		"dragmode": "kNoDragging",
+		"dragrange": "kRangeAll",
+		"dropmode": "kAcceptNone",
+		"edgefloat": "kEFrightBottom",
+		"enabled": true,
+		"fieldstyle": "CtrlTabPane",
+		"fieldstylefocused": "",
+		"font": 4,
+		"fontsize": 0,
+		"fontstyle": "kPlain",
+		"forecolor": "kColor3DFace",
+		"height": 658,
+		"helpfile": 0,
+		"imagenoroom": false,
+		"keyevents": false,
+		"left": 8,
+		"mouseevents": false,
+		"multirow": false,
+		"nodropcursor": 0,
+		"objlink": 0,
+		"osdropflags": "kOSDROPnone",
+		"rmouseevents": false,
+		"secondarytextcolor": "RGB(0,0,0)",
+		"selectedtabcolor": "kColorDefault",
+		"showfocus": false,
+		"showimages": false,
+		"sidepanel": false,
+		"sidepanelmode": "kSidePanelModeNone",
+		"statusevents": false,
+		"styledtext": false,
+		"tabcolor": "kColorDefault",
+		"taborient": "kTopTabs",
+		"tabstyle": "kDefaultPanes",
+		"textcolor": "kColorBtnText",
+		"tooltip": "",
+		"tooltippos": "kTooltipPosMouse",
+		"top": 8,
+		"userinfo": "",
+		"visible": true,
+		"width": 1031
+	},
+	"multivalueproperties": {
+		"properties": [
+			{
+				"tabcaption": {
+					"type": 0,
+					"calc": "   Configurations   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			},
+			{
+				"tabcaption": {
+					"type": 0,
+					"calc": "   Consumer - One   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			},
+			{
+				"tabcaption": {
+					"type": 0,
+					"calc": "   Consumer - Multiple   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			},
+			{
+				"tabcaption": {
+					"type": 0,
+					"calc": "   Consumer - Open/Consume/Close   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			},
+			{
+				"tabcaption": {
+					"type": 0,
+					"calc": "   Logs   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			}
+		]
+	}
+}

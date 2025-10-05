@@ -1,0 +1,16 @@
+If not(isclear(ivRefCallingInstance))
+	If ivRefCallingInstance.$OnKafkaSuccess.$cando
+		Do ivRefCallingInstance.$OnKafkaSuccess(pResults)
+		Calculate lvbShow as kFalse
+	End If
+End If
+
+If lvbShow
+	For lvnLoop from 1 to pResults.$colcount step 1
+		Calculate lvcFieldName as pResults.[lvnLoop].$name
+		Calculate lvcMsg as con(lvcMsg,lvcFieldName," (",pResults.$cols.[lvnLoop].$coltype,"): ",pResults.[lvcFieldName],"//")
+	End For
+	
+	Do $ctask.$showmessage(con("Success// //",lvcMsg))
+End If
+Quit method

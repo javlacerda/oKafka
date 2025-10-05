@@ -1,0 +1,7 @@
+If pRefLstMessages.$linecount=0|pRefLstMessages.$line=0
+	Do $cwind.$showmessage("No line selected.","Error")
+	Quit method
+End If
+
+Do $clib.$windows.wViewHeaders.$openmodal("*",kWindowCenter,pRefLstMessages.headers)
+Quit method

@@ -1,0 +1,7 @@
+If $ctarget.$container().$ident=$cobj.$container().$ident
+	If ivLstHeaders.$linecount>0
+		Do ivLstHeaders.$remove(ivLstHeaders.$line)
+		Redraw (Refresh now) cgHeaders
+	End If
+End If
+Quit method

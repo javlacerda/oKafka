@@ -1,0 +1,31 @@
+
+Begin text block
+Line:{
+Line:  "type": "record",
+Line:  "name": "Usuario",
+Line:  "fields": [
+Line:    {"name": "id", "type": "int"},
+Line:    {"name": "nome", "type": "string"},
+Line:    {"name": "email", "type": "string"},
+Line:    {"name": "idade", "type": "int"}
+Line:  ]
+Line:}
+End text block
+Get text block lvcSchema
+
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("url",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("schema",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("subject",kCharacter,kSimplechar)
+
+Calculate lvRowParam.url as "http://storekfk.qa.prozis.tech:8081"
+Calculate lvRowParam.schema as lvcSchema
+Calculate lvRowParam.subject as "omnis-topic-value"
+
+Do $clibstartuptask.$GetPythonWorker() Returns lvoKafka
+
+Do lvoKafka.$callmethod("okafka","register_schema",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",lvcErrorText))
+End If
+Quit method

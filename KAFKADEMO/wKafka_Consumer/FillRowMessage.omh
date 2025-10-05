@@ -1,0 +1,13 @@
+Calculate ivRowMessage.offset as ivRowResult.offset
+Calculate ivRowMessage.partition as ivRowResult.partition
+Calculate ivRowMessage.topic as ivRowResult.topic
+Calculate ivRowMessage.key as ivRowResult.key
+Calculate ivRowMessage.timestamp as ivRowResult.timestamp
+Calculate ivRowMessage.message as ivRowResult.value
+
+Set reference lvRefHeaders to ivRowResult.headers
+For lvnLoop from 1 to lvRefHeaders.$colcount step 1
+	Calculate lvcColName as lvRefHeaders.$cols.[lvnLoop].$name
+	Do ivLstHeaders.$add(lvcColName,lvRefHeaders.[lvcColName])
+End For
+Quit method

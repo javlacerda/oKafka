@@ -1,0 +1,4 @@
+If ivbConsumerOpen
+	Do method ConsumeOcc_Close
+End If
+Quit method

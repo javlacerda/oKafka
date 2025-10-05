@@ -1,0 +1,22 @@
+Do pRefRowParam.$define()
+Do pRefRowParam.$cols.$add("server",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("topic",kCharacter,kSimplechar)
+If ivbForcePartition
+	Do pRefRowParam.$cols.$add("partition",kInteger,k32bitint)
+End If
+Do pRefRowParam.$cols.$add("schemaId",kInteger,k32bitint)
+Do pRefRowParam.$cols.$add("schemaRegistryUrl",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("clientId",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("groupId",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("config",kList)
+Calculate pRefRowParam.server as ivcServer
+Calculate pRefRowParam.topic as ivcTopic
+If ivbForcePartition
+	Calculate pRefRowParam.partition as ivnPartition
+End If
+Calculate pRefRowParam.schemaRegistryUrl as ivcSchemaRegistryUrl
+Calculate pRefRowParam.schemaId as ivnSchemaId
+Calculate pRefRowParam.clientId as ivcClientId
+Calculate pRefRowParam.groupId as ivcGroupId
+Calculate pRefRowParam.config as ivLstConfig
+Quit method

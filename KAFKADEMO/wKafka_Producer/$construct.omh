@@ -1,0 +1,13 @@
+Do ivoData.$GetServer(ivcServer)
+Do ivoData.$GetTopic(ivcTopic)
+Do ivoData.$GetLstConfig(ivLstConfig)
+Do ivoData.$GetLstHeaders(ivLstHeaders)
+
+Calculate ivcMessage as con("Simple text message from Omnis via Python Worker: ",jst(#D,"D:D/M/y H:N:S"))
+
+Do ivLstLogs.$define()
+Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
+
+Do $clibstartuptask.$GetPythonWorker() Returns ivoKafka
+Do ivoKafka.$SetCallingInstance($cinst().$ref)
+Quit method

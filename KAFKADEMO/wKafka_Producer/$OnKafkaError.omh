@@ -1,0 +1,10 @@
+Begin text block
+Line:[pError.errorCode]
+Line:[pError.errorInfo]
+End text block
+Get text block lvcErrorMsg
+
+Do $ctask.$showmessage(lvcErrorMsg,"Error",kMsgIcon)
+Calculate ivbSuccess as kFalse
+Calculate ivRowResult as pError
+Quit method

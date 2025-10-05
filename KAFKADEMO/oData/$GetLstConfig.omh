@@ -1,0 +1,4 @@
+Do pRefLstConfig.$define()
+Do pRefLstConfig.$cols.$add("item",kCharacter,kSimplechar)
+Do pRefLstConfig.$cols.$add("value",kCharacter,kSimplechar)
+Quit method pRefLstConfig

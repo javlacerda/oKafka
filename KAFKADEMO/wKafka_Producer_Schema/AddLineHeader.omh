@@ -1,0 +1,10 @@
+If ivLstHeaders.$linecount=0
+	Do ivLstHeaders.$add()
+	Calculate ivLstHeaders.$line as ivLstHeaders.$linecount
+Else
+	Do ivLstHeaders.$addbefore(ivLstHeaders.$line)
+End If
+
+Redraw (Refresh now) cgHeaders
+Queue set current field efKeyHeader
+Quit method

@@ -1,0 +1,29 @@
+{
+	"classtype": "kCode",
+	"omnisversion": "11.1",
+	"omnisbuild": 111037255,
+	"internalversion": 15,
+	"designtaskname": "Startup_Task",
+	"cvardefs": [
+
+	],
+	"properties": {
+		"canremotedebugwhenlocked": false,
+		"collectperformancedata": false,
+		"componenticon": 0,
+		"componentinfo": {
+
+		},
+		"componenttype": "kCompStoreHidden",
+		"createdate": "2025-08-27 08:34:49",
+		"desc": "",
+		"editor": "",
+		"editordata": "",
+		"external": true,
+		"moddate": "2025-08-29 13:17:36",
+		"showascheckedout": false,
+		"userinfo": "",
+		"vcsrevision": 0,
+		"version": ""
+	}
+}

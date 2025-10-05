@@ -1,0 +1,12 @@
+Do lvRowParam.$define()
+
+Do ivoKafka.$callmethod("okafka","close_consumer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+	Quit method
+End If
+If ivbSuccess
+	Calculate ivbConsumerOpen as kFalse
+	Do method DefBtnsConsumeOcc
+End If
+Quit method

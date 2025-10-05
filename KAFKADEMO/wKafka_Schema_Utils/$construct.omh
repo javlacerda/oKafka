@@ -1,0 +1,20 @@
+Do ivoData.$GetServer(ivcServer)
+Do ivoData.$GetSchemaRegistryUrl(ivcSchemaRegistryUrl)
+Do ivoData.$GetTopic_Schema(ivcTopic)
+Do ivoData.$GetLstConfig(ivLstConfig)
+Do ivoData.$GetSchemaStr(ivcSchemaStr)
+Do ivoData.$DefRowSchemaInfo(ivRowSchemaInfoFromSubject)
+Do ivRowSchemaInfoFromId.$copydefinition(ivRowSchemaInfoFromSubject)
+
+Do ivLstSubjects.$define()
+Do ivLstSubjects.$cols.$add("name",kCharacter,kSimplechar)
+
+Calculate ivcSubjectGetSchemaFromSubject as con(ivcTopic,"-value")
+Calculate ivcSubjectRegisterSchema as ivcSubjectGetSchemaFromSubject
+
+Do ivLstLogs.$define()
+Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
+
+Do $clibstartuptask.$GetPythonWorker() Returns ivoKafka
+Do ivoKafka.$SetCallingInstance($cinst().$ref)
+Quit method

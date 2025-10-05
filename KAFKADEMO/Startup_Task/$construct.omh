@@ -1,0 +1,9 @@
+Calculate #FD as "D/M/y"
+Calculate #FDT as "D/M/y H:N:S"
+
+Do $clib.$objects.oPythonWorker.$newref() Returns ivoPythonWorker
+Do ivoPythonWorker.$init()
+Do ivoPythonWorker.$start()
+
+Install menu mMain
+Quit method

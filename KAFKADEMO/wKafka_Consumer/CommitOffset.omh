@@ -1,0 +1,12 @@
+Do lvRowParamCommit.$define()
+Do lvRowParamCommit.$cols.$add("topic",kCharacter,kSimplechar)
+Do lvRowParamCommit.$cols.$add("offset",kInteger,k64bitint)
+Do lvRowParamCommit.$cols.$add("partition",kInteger,k32bitint)
+Do lvRowParamCommit.$assigncols(ivcTopic,pnOffset,pnPartition)
+
+Do ivoKafka.$callmethod("okafka","commit",lvRowParamCommit,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+	Quit method kFalse
+End If
+Quit method ivRowResult.success

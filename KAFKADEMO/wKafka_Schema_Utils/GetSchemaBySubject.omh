@@ -1,0 +1,22 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("url",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("subject",kCharacter,kSimplechar)
+
+Calculate lvRowParam.url as ivcSchemaRegistryUrl
+Calculate lvRowParam.subject as ivcSubjectGetSchemaFromSubject
+
+Do ivoKafka.$callmethod("okafka","get_schema_by_subject",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",lvcErrorText))
+Else
+	If ivRowResult.success
+		Do ivRowSchemaInfoFromSubject.$clear()
+		Calculate ivRowSchemaInfoFromSubject.id as ivRowResult.id
+		Calculate ivRowSchemaInfoFromSubject.version as ivRowResult.version
+		Calculate ivRowSchemaInfoFromSubject.type as ivRowResult.type
+		Do OJSON.$formatjson(ivRowResult.schema) Returns ivRowSchemaInfoFromSubject.schema
+		
+		Redraw (Refresh now) gbGetSchemaFromSubject
+	End If
+End If
+Quit method

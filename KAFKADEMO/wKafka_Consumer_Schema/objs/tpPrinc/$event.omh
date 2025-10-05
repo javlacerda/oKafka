@@ -1,0 +1,5 @@
+On evTabSelected
+	If ivbConsumerOpen
+		Do $cwind.$showmessage("Please, close the consumer.","Error",kMsgIcon)
+		Quit event handler (Discard event)
+	End If

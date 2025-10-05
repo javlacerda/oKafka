@@ -1,0 +1,17 @@
+
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("url",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("subject",kCharacter,kSimplechar)
+
+Calculate lvRowParam.url as "http://storekfk.qa.prozis.tech:8081"
+Calculate lvRowParam.subject as "omnis_topic-value"
+
+Do $clibstartuptask.$GetPythonWorker() Returns lvoKafka
+
+Do lvoKafka.$callmethod("okafka","get_schema",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",lvcErrorText))
+End If
+
+Breakpoint
+Quit method

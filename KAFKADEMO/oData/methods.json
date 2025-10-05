@@ -1,0 +1,189 @@
+[
+	{
+		"name": "$GetServer",
+		"order": 1,
+		"pvardefs": [
+			{
+				"name": "pcRefServer",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetSchemaRegistryUrl",
+		"order": 2,
+		"pvardefs": [
+			{
+				"name": "pcRefSchemaRegistryUrl",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetTopic",
+		"order": 3,
+		"pvardefs": [
+			{
+				"name": "pcRefTopic",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetTopic_Schema",
+		"order": 4,
+		"pvardefs": [
+			{
+				"name": "pcRefTopic",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetLstConfig",
+		"order": 5,
+		"pvardefs": [
+			{
+				"name": "pRefLstConfig",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetLstHeaders",
+		"order": 6,
+		"pvardefs": [
+			{
+				"name": "pRefLstHeaders",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetSchemaStr",
+		"order": 7,
+		"pvardefs": [
+			{
+				"name": "pcRefSchemaStr",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetRowSchema",
+		"order": 8,
+		"pvardefs": [
+			{
+				"name": "pRefRowSchema",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$DefRowSchema",
+		"order": 9,
+		"pvardefs": [
+			{
+				"name": "pRefRowSchema",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$DefRowSchemaInfo",
+		"order": 10,
+		"pvardefs": [
+			{
+				"name": "pRefRowSchemaInfo",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$DefLstHeaders",
+		"order": 11,
+		"pvardefs": [
+			{
+				"name": "pcRefLstHeaders",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	}
+]

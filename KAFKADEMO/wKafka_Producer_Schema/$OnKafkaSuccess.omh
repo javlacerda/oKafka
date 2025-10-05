@@ -1,0 +1,15 @@
+For lvnLoop from 1 to pResult.$colcount step 1
+	Calculate lvcFieldName as pResult.[lvnLoop].$name
+	Calculate lvcMsg as con(lvcMsg,lvcFieldName,": ",pResult.[lvcFieldName],"//")
+End For
+
+If pResult.success
+	Do ivLstLogs.$add(lvcMsg)
+	Calculate ivbSuccess as kTrue
+Else
+	Do $ctask.$showmessage(lvcMsg,"Error",kMsgIcon)
+	Calculate ivbSuccess as kFalse
+End If
+
+Calculate ivRowResult as pResult
+Quit method

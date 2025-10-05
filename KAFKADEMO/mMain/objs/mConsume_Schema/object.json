@@ -1,0 +1,23 @@
+{
+	"ident": 1012,
+	"order": 5,
+	"properties": {
+		"cascade": "",
+		"checked": false,
+		"enabled": true,
+		"fontstyle": "kPlain",
+		"helpfile": 0,
+		"helptext": "",
+		"iconcolor": "kColorDefault",
+		"iconid": 0,
+		"macshortcutkey": "",
+		"text": {
+			"type": 0,
+			"calc": "Consume With Schema"
+		},
+		"unixshortcutkey": "",
+		"userinfo": "",
+		"users": "12345678",
+		"winshortcutkey": ""
+	}
+}
