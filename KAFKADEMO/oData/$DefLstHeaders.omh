@@ -1,4 +1,4 @@
 Do pcRefLstHeaders.$define()
-Do pcRefLstHeaders.$cols.$add("key",kCharacter,kSimplechar)
-Do pcRefLstHeaders.$cols.$add("value",kCharacter,kSimplechar)
+Do pcRefLstHeaders.$cols.$add("Key",kCharacter,kSimplechar)
+Do pcRefLstHeaders.$cols.$add("Value",kCharacter,kSimplechar)
 Quit method

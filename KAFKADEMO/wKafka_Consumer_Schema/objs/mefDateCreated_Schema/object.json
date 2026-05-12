@@ -24,7 +24,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivRowMessage.message.dateCreated",
+		"dataname": "ivRowMessage.Message.DateCreated",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

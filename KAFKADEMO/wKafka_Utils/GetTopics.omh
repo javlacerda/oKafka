@@ -1,0 +1,28 @@
+Do ivLstTopics.$clear()
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("Server",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("Config",kList)
+
+Calculate lvRowParam.Server as ivcServer
+Calculate lvRowParam.Config as ivLstConfig
+
+Do ivoKafka.$callmethod("okafka","get_topics",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",lvcErrorText))
+Else
+	If ivRowResult.Success
+		Set reference lvRefLst to ivRowResult.Topics
+		If not(isclear(lvRefLst))
+			For lvRefLst.$line from 1 to lvRefLst.$linecount step 1
+				Do ivLstTopics.$add(lvRefLst.C1)
+			End For
+		End If
+		
+		Do ivLstTopics.$sort($ref.Name,kFalse)
+	End If
+	
+	Do $cwind.$showmessage(con(ivLstTopics.$linecount," topics retrieved!"),"Info",kMsgIcon)
+End If
+
+Redraw (Refresh now) hlbTopics
+Quit method

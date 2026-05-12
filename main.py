@@ -1,11 +1,12 @@
-# okafka v2025.09.22
+# okafka v2026.01.19
 
-from omnis_calls import sendResponse, sendError
-from confluent_kafka import Producer, Consumer, TopicPartition, KafkaException
+from omnis_calls import sendResponse
+from confluent_kafka import Producer, TopicPartition, KafkaException
 from confluent_kafka import SerializingProducer, DeserializingConsumer
 from confluent_kafka import TIMESTAMP_CREATE_TIME, TIMESTAMP_LOG_APPEND_TIME
+from confluent_kafka.admin import AdminClient
 from confluent_kafka.serialization import StringSerializer, StringDeserializer
-from confluent_kafka.schema_registry import SchemaRegistryClient, Schema, SchemaRegistryError
+from confluent_kafka.schema_registry import SchemaRegistryClient, Schema
 from confluent_kafka.schema_registry.avro import AvroSerializer, AvroDeserializer
 from datetime import datetime
 
@@ -22,9 +23,12 @@ class Box(object):
         self.delivery_error_message = None
         self.delivery_message = None
 
+
+# Global code
 g_box = Box()
 
 
+# Callback function used by producers
 def delivery_report(err, msg):
     if err is not None:
         g_box.delivery_error_message = err
@@ -32,8 +36,9 @@ def delivery_report(err, msg):
         g_box.delivery_message = msg
 
 
+# Connects to server and produce one message
 def produce_one(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
     g_box.clean_producer()
 
     try:
@@ -41,34 +46,35 @@ def produce_one(param):
              raise Exception("No params provided")
 
         producer = _create_producer(param)
-        topic = param.get("topic")
-        key = param.get("key")
-        partition = param.get("partition", -1)
-        message = param.get("message")
-        headers = _get_headers_as_dict(param.get("headers"))
+        topic = param.get("Topic")
+        key = param.get("Key")
+        partition = param.get("Partition", -1)
+        message = param.get("Message")
+        headers = _get_headers_as_dict(param.get("Headers"))
 
-        producer.produce(topic, value = message, key = key, partition = partition, on_delivery = delivery_report, headers = headers)
+        producer.produce(topic, key = key, value = message, partition = partition, on_delivery = delivery_report, headers = headers)
         pending_messages = producer.flush(g_box.timeout)
+
         if pending_messages == 0 and g_box.delivery_error_message is None:
             ret_value.update(_extract_delivery_info(g_box.delivery_message))
-            ret_value["success"] = True
+            ret_value["Success"] = True
         else:
             if g_box.delivery_error_message is None:
-                ret_value["error_message"] = "The message queue still has pending messages. Please, check in the broker if the actual message was sent."
+                ret_value["ErrorMessage"] = "The message queue still has pending messages. Please, check in the broker if the actual message was sent."
             else:
-                ret_value["error_message"] = str(g_box.delivery_error_message.code()) + ": " + g_box.delivery_error_message.str()
+                ret_value["ErrorMessage"] = str(g_box.delivery_error_message.code()) + ": " + g_box.delivery_error_message.str()
 
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def connect_producer(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     if g_box.producer is not None:
         g_box.producer = None
@@ -78,12 +84,12 @@ def connect_producer(param):
             raise Exception("No params provided")
 
         g_box.producer = _create_producer(param)
-        ret_value["success"] = True
+        ret_value["Success"] = True
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
@@ -92,11 +98,11 @@ def close_producer(param):
     if g_box.producer is not None:
         g_box.producer = None
 
-    return sendResponse({"success": True})
+    return sendResponse({"Success": True})
 
 
 def produce(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
     g_box.clean_producer()
 
     try:
@@ -106,34 +112,34 @@ def produce(param):
         if g_box.producer is None:
             raise Exception("Producer not open")
 
-        topic = param.get("topic")
-        key = param.get("key")
-        partition = param.get("partition", 0)
-        message = param.get("message")
-        headers = _get_headers_as_dict(param.get("headers"))
+        topic = param.get("Topic")
+        key = param.get("Key")
+        partition = param.get("Partition", 0)
+        message = param.get("Message")
+        headers = _get_headers_as_dict(param.get("Headers"))
 
         g_box.producer.produce(topic, value = message, key = key, partition = partition, on_delivery = delivery_report, headers = headers)
         pending_messages = g_box.producer.flush(g_box.timeout)
         if pending_messages == 0 and g_box.delivery_error_message is None:
             ret_value.update(_extract_delivery_info(g_box.delivery_message))
-            ret_value["success"] = True
+            ret_value["Success"] = True
         else:
             if g_box.delivery_error_message is None:
-                ret_value["error_message"] = "The message queue still has pending messages. Please, check in the broker if the actual message was sent."
+                ret_value["ErrorMessage"] = "The message queue still has pending messages. Please, check in the broker if the actual message was sent."
             else:
-                ret_value["error_message"] = str(g_box.delivery_error_message.code()) + ": " + g_box.delivery_error_message.str()
+                ret_value["ErrorMessage"] = str(g_box.delivery_error_message.code()) + ": " + g_box.delivery_error_message.str()
 
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def connect_consumer(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
@@ -142,12 +148,12 @@ def connect_consumer(param):
         if g_box.consumer is not None:
             g_box.consumer = None
 
-        server = param.get("server")
-        topic = param.get("topic")
-        client_id = param.get("clientId", "omnis_client")
-        group_id = param.get("groupId", "omnis_client_group")
-        schema_id = param.get("schemaId")
-        partition = param.get("partition")
+        server = param.get("Server")
+        topic = param.get("Topic")
+        client_id = param.get("ClientId", "omnis_client")
+        group_id = param.get("GroupId", "omnis_client_group")
+        schema_id = param.get("SchemaId")
+        partition = param.get("Partition")
 
         conf = {
             "bootstrap.servers": server,
@@ -159,7 +165,7 @@ def connect_consumer(param):
         }
 
         if schema_id is not None:
-            schema_registry_client = SchemaRegistryClient({"url": param.get("schemaRegistryUrl")})
+            schema_registry_client = SchemaRegistryClient({"url": param.get("SchemaRegistryUrl")})
             if schema_id > 0:
                 schema_obj = schema_registry_client.get_schema(schema_id)
                 avro_deserializer = AvroDeserializer(schema_registry_client = schema_registry_client, schema_str = schema_obj.schema_str)
@@ -169,19 +175,19 @@ def connect_consumer(param):
         else:
             conf["value.deserializer"] = StringDeserializer("utf_8")
 
-        conf.update(_get_extra_config(param.get("config")))
+        conf.update(_get_extra_config(param.get("Config")))
         g_box.consumer = DeserializingConsumer(conf)
         if partition is None:
             g_box.consumer.subscribe([topic])
         else:
             g_box.consumer.assign([TopicPartition(topic, partition)])
-        ret_value["success"] = True
+        ret_value["Success"] = True
 
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
@@ -191,11 +197,11 @@ def close_consumer(param):
         g_box.consumer.close()
         g_box.consumer = None
 
-    return sendResponse({"success": True})
+    return sendResponse({"Success": True})
 
 
 def consume(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
@@ -207,43 +213,44 @@ def consume(param):
         msg = g_box.consumer.poll(g_box.timeout)
         if msg is not None:
             if msg.error():
-                ret_value["error_message"] = msg.error()
+                ret_value["ErrorMessage"] = msg.error()
             else:
-                ret_value["hasMessage"] = True
+                ret_value["HasMessage"] = True
                 if msg.key() is not None:
-                    ret_value["key"] = msg.key()
+                    ret_value["Key"] = msg.key()
                 else:
-                    ret_value["key"] = ""
-                ret_value["value"] = msg.value()
-                ret_value["offset"] = msg.offset()
-                ret_value["partition"] = msg.partition()
-                ret_value["topic"] = msg.topic()
+                    ret_value["Key"] = ""
+                ret_value["Value"] = msg.value()
+                ret_value["Offset"] = msg.offset()
+                ret_value["Partition"] = msg.partition()
+                ret_value["Topic"] = msg.topic()
                 timestamp_type, timestamp_value = msg.timestamp()
                 if timestamp_type in [TIMESTAMP_CREATE_TIME, TIMESTAMP_LOG_APPEND_TIME]:
-                    ret_value["timestamp"] = datetime.fromtimestamp(timestamp_value / 1000).isoformat()
+                    ret_value["Timestamp"] = datetime.fromtimestamp(timestamp_value / 1000).isoformat()
                 else:
-                    ret_value["timestamp"] = None
-                ret_value["success"] = True
+                    ret_value["Timestamp"] = None
+                ret_value["Success"] = True
+                
                 if msg.headers() is not None:
-                    ret_headers = {}
-                    for key in msg.headers():
-                        ret_headers[key[0]] = key[1].decode()
+                    ret_headers = []
+                    for item in msg.headers():
+                        ret_headers.append((item[0], item[1].decode()))
 
-                    ret_value["headers"] = ret_headers
+                    ret_value["Headers"] = ret_headers
         else:
-            ret_value["hasMessage"] = False
-            ret_value["success"] = True
+            ret_value["HasMessage"] = False
+            ret_value["Success"] = True
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def commit(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
@@ -252,122 +259,152 @@ def commit(param):
         if g_box.consumer is None:
             raise Exception("Consumer not opened")
 
-        partition = param.get("partition")
-        offset = param.get("offset")
-        topic = param.get("topic")
+        partition = param.get("Partition")
+        offset = param.get("Offset")
+        topic = param.get("Topic")
 
         g_box.consumer.commit(offsets = [TopicPartition(topic, partition, offset + 1)], asynchronous = False)
-        ret_value["success"] = True
+        ret_value["Success"] = True
 
     except KafkaException as ex:
         kafka_error = ex.args[0]
-        ret_value["error_message"] = str(kafka_error.code()) + ": " + kafka_error.str()
+        ret_value["ErrorMessage"] = str(kafka_error.code()) + ": " + kafka_error.str()
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def register_schema(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
              raise Exception("No params provided")
 
-        url = param.get("url")
-        schema_str = param.get("schema")
-        subject = param.get("subject")
+        url = param.get("Url")
+        schema_str = param.get("Schema")
+        subject = param.get("Subject")
 
         src = SchemaRegistryClient({'url': url})
         schema = Schema(schema_str, schema_type = "AVRO")
         schema_id = src.register_schema(subject_name = subject, schema = schema)
-        ret_value["schemaId"] = schema_id
-        ret_value["success"] = True
+        ret_value["SchemaId"] = schema_id
+        ret_value["Success"] = True
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def get_schema_by_subject(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
              raise Exception("No params provided")
 
-        url = param.get("url")
-        subject = param.get("subject")
+        url = param.get("Url")
+        subject = param.get("Subject")
 
         sr = SchemaRegistryClient({'url': url})
         latest_version = sr.get_latest_version(subject)
 
-        ret_value["schema"] = latest_version.schema.schema_str
-        ret_value["type"] = latest_version.schema.schema_type
-        ret_value["version"] = latest_version.version
-        ret_value["id"] = latest_version.schema_id
-        ret_value["success"] = True
+        ret_value["Schema"] = latest_version.schema.schema_str
+        ret_value["Type"] = latest_version.schema.schema_type
+        ret_value["Version"] = latest_version.version
+        ret_value["Id"] = latest_version.schema_id
+        ret_value["Success"] = True
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def get_schema_by_id(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
              raise Exception("No params provided")
 
-        url = param.get("url")
-        id = param.get("id")
+        url = param.get("Url")
+        id = param.get("Id")
 
         sr = SchemaRegistryClient({'url': url})
         schema = sr.get_schema(id)
 
-        ret_value["schema"] = schema.schema_str
-        ret_value["type"] = schema.schema_type
-        ret_value["success"] = True
+        ret_value["Schema"] = schema.schema_str
+        ret_value["Type"] = schema.schema_type
+        ret_value["Success"] = True
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
-# Returns a lista of available subjects
+# Returns a list of available subjects
 def get_subjects(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
              raise Exception("No params provided")
 
-        url = param.get("url")
+        url = param.get("Url")
 
         sr = SchemaRegistryClient({'url': url})
         subjects = sr.get_subjects()
 
-        ret_value["subjects"] = subjects
-        ret_value["success"] = True
+        ret_value["Subjects"] = subjects
+        ret_value["Success"] = True
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
+
+    return sendResponse(ret_value)
+
+
+# Returns a list of topics
+def get_topics(param):
+    ret_value = {"Success": False}
+
+    try:
+        if param is None:
+             raise Exception("No params provided")
+    
+        conf = {
+            'bootstrap.servers': param.get("Server")
+        }
+        
+        conf.update(_get_extra_config(param.get("Config")))
+        
+        topics = []
+        admin = AdminClient(conf)
+        cluster_metadata = admin.list_topics()
+        
+        if cluster_metadata is not None:
+            for topic in cluster_metadata.topics.values():
+                topics.append(topic.topic)
+
+        ret_value["Topics"] = topics
+        ret_value["Success"] = True
+    except Exception as ex:
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
 
 def set_timeout(param):
-    ret_value = {"success": False}
+    ret_value = {"Success": False}
 
     try:
         if param is None:
              raise Exception("No params provided")
 
-        g_box.timeout = param.get("timeout", 60)
-        ret_value["success"] = True
+        g_box.timeout = param.get("Timeout", 60)
+        ret_value["Success"] = True
     except Exception as ex:
-        ret_value["error_message"] = str(ex)
+        ret_value["ErrorMessage"] = str(ex)
 
     return sendResponse(ret_value)
 
@@ -378,42 +415,44 @@ def set_timeout(param):
 
 # Creates and returns a producer instance
 def _create_producer(param):
-    server = param.get("server")
-    schema_id = param.get("schemaId")
-    schema_registry_url = param.get("schemaRegistryUrl")
+    server = param.get("Server")
+    schema_id = param.get("SchemaId", 0)
+    schema_str = param.get("Schema", "")
+    schema_registry_url = param.get("SchemaRegistryUrl")
 
     conf = {
         "bootstrap.servers": server,
         "linger.ms": 0
     }
 
-    conf.update(_get_extra_config(param.get("config")))
+    conf.update(_get_extra_config(param.get("Config")))
 
-    if schema_id is None:
+    if schema_id <= 0 and schema_str == "":
         return Producer(conf)
 
     schema_registry_client = SchemaRegistryClient({"url": schema_registry_url})
-    schema_obj = schema_registry_client.get_schema(schema_id)
-    avro_serializer = AvroSerializer(
-        schema_registry_client = schema_registry_client,
-        schema_str = schema_obj.schema_str
-    )
+
+    if schema_id > 0:
+        schema_obj = schema_registry_client.get_schema(schema_id)
+        avroSerializer = AvroSerializer(schema_registry_client = schema_registry_client, schema_str = schema_obj.schema_str)
+    else:
+        avroSerializer = AvroSerializer(schema_registry_client = schema_registry_client, schema_str = schema_str)
 
     conf["key.serializer"] = StringSerializer("utf_8")
-    conf["value.serializer"] = avro_serializer
+    conf["value.serializer"] = avroSerializer
     return SerializingProducer(conf)
 
 
 # Extracts information from a Kafka Message and saves it to a dict
 def _extract_delivery_info(message):
     info = {
-        "offset": message.offset(),
-        "partition": message.partition()
+        "Offset": message.offset(),
+        "Partition": message.partition()
     }
 
     timestamp_type, timestamp_value = message.timestamp()
     if timestamp_type in [TIMESTAMP_CREATE_TIME, TIMESTAMP_LOG_APPEND_TIME]:
-        info["timestamp"] = datetime.fromtimestamp(timestamp_value / 1000).isoformat()
+        info["Timestamp"] = datetime.fromtimestamp(timestamp_value / 1000).isoformat()
     return info
 
 
@@ -429,7 +468,7 @@ def _get_extra_config(param_config):
     return conf
 
 
-# Reads a list os list with headers data and convert it to a dict
+# Reads a list of lists with headers data and convert it to a dict
 def _get_headers_as_dict(lst_headers):
     headers = None
 

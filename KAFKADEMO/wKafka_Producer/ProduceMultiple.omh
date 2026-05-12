@@ -1,9 +1,9 @@
 Calculate lvnTimeIni as #CT
 Do method DefineRowParam (lvRowParam)
-Calculate lvRowParam.server as ivcServer
-Calculate lvRowParam.config as ivLstConfig
+Calculate lvRowParam.Server as ivcServer
+Calculate lvRowParam.Config as ivLstConfig
 
-Do ivoKafka.$callmethod("okafka","connect_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+Do ivoKafkaPython.$callmethod("okafka","connect_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
 If not(lvbOk)
 	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 	Quit method
@@ -12,16 +12,16 @@ If not(ivbSuccess)
 	Quit method
 End If
 
-Calculate lvRowParam.topic as ivcTopic
-Calculate lvRowParam.partition as ivnPartition
-Calculate lvRowParam.config as ivLstConfig
-Calculate lvRowParam.headers as ivLstHeaders
+Calculate lvRowParam.Topic as ivcTopic
+Calculate lvRowParam.Partition as ivnPartition
+Calculate lvRowParam.Config as ivLstConfig
+Calculate lvRowParam.Headers as ivLstHeaders
 
 For lvnLoop from 1 to ivnQuantity step 1
-	Calculate lvRowParam.key as con(ivcKey,"-",lvnLoop)
-	Calculate lvRowParam.message as con(ivcMessage,"-",lvnLoop)
+	Calculate lvRowParam.Key as con(ivcKey,"-",lvnLoop)
+	Calculate lvRowParam.Message as con(ivcMessage,"-",lvnLoop)
 	
-	Do ivoKafka.$callmethod("okafka","produce",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+	Do ivoKafkaPython.$callmethod("okafka","produce",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
 	If not(lvbOk)
 		Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 		Break to end of loop
@@ -33,7 +33,7 @@ End For
 
 Do lvRowParam.$define()
 
-Do ivoKafka.$callmethod("okafka","close_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
+Do ivoKafkaPython.$callmethod("okafka","close_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
 If not(lvbOk)
 	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 	Quit method

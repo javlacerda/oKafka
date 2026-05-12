@@ -1,1 +1,6 @@
+If not(ivoPythonWorker.$validref())
+	Do $clib.$objects.oPython_Worker.$newref() Returns ivoPythonWorker
+	Do ivoPythonWorker.$init()
+	Do ivoPythonWorker.$start()
+End If
 Quit method ivoPythonWorker

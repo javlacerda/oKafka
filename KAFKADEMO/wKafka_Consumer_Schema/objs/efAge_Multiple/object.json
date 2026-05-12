@@ -26,7 +26,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivLstMessages.message.age",
+		"dataname": "ivLstMessages.Message.age",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

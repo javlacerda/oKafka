@@ -36,7 +36,7 @@
 		"enterable": false,
 		"extendable": false,
 		"extendedgridlines": true,
-		"fieldstyle": "",
+		"fieldstyle": "PrzComplexGrid",
 		"fieldstylefocused": "",
 		"forecolor": "kColorWindow",
 		"headerborder": "kBorderPlain",

@@ -2,7 +2,7 @@
 	"classtype": "kTask",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 36,
+	"internalversion": 44,
 	"tvardefs": [
 
 	],
@@ -14,7 +14,7 @@
 			"name": "ivoPythonWorker",
 			"order": 2,
 			"type": "kObjectref",
-			"subtype": "oPythonWorker",
+			"subtype": "oPython_Worker",
 			"sublen": 0
 		}
 	],
@@ -32,7 +32,7 @@
 		"editordata": "",
 		"external": true,
 		"issupercomponent": false,
-		"moddate": "2025-10-04 16:56:59",
+		"moddate": "2026-02-03 22:26:42",
 		"showascheckedout": false,
 		"userinfo": "",
 		"vcsrevision": 0,

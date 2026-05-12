@@ -1,6 +1,6 @@
 Do pRefRowSchemaInfo.$define()
-Do pRefRowSchemaInfo.$cols.$add("id",kInteger,k32bitint)
-Do pRefRowSchemaInfo.$cols.$add("version",kInteger,k32bitint)
-Do pRefRowSchemaInfo.$cols.$add("type",kCharacter,kSimplechar)
-Do pRefRowSchemaInfo.$cols.$add("schema",kCharacter,kSimplechar)
+Do pRefRowSchemaInfo.$cols.$add("Id",kInteger,k32bitint)
+Do pRefRowSchemaInfo.$cols.$add("Version",kInteger,k32bitint)
+Do pRefRowSchemaInfo.$cols.$add("Type",kCharacter,kSimplechar)
+Do pRefRowSchemaInfo.$cols.$add("Schema",kCharacter,kSimplechar)
 Quit method

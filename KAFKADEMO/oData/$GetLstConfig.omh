@@ -1,4 +1,10 @@
 Do pRefLstConfig.$define()
-Do pRefLstConfig.$cols.$add("item",kCharacter,kSimplechar)
-Do pRefLstConfig.$cols.$add("value",kCharacter,kSimplechar)
+Do pRefLstConfig.$cols.$add("Item",kCharacter,kSimplechar)
+Do pRefLstConfig.$cols.$add("Value",kCharacter,kSimplechar)
+
+# Do pRefLstConfig.$add("security.protocol","SASL_PLAINTEXT")
+# Do pRefLstConfig.$add("sasl.mechanism","SCRAM-SHA-256")
+# Do pRefLstConfig.$add("sasl.username","")
+# Do pRefLstConfig.$add("sasl.password","")
+# Calculate pRefLstConfig.$line as 1
 Quit method pRefLstConfig

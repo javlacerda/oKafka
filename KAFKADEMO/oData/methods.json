@@ -18,10 +18,27 @@
 	},
 	{
 		"name": "$GetSchemaRegistryUrl",
-		"order": 2,
+		"order": 3,
 		"pvardefs": [
 			{
-				"name": "pcRefSchemaRegistryUrl",
+				"name": "pcRefUrl",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetSchemaRegistryServer",
+		"order": 4,
+		"pvardefs": [
+			{
+				"name": "pcRefServer",
 				"order": 1,
 				"type": "kFieldreference",
 				"subtype": 0,
@@ -35,7 +52,7 @@
 	},
 	{
 		"name": "$GetTopic",
-		"order": 3,
+		"order": 5,
 		"pvardefs": [
 			{
 				"name": "pcRefTopic",
@@ -52,7 +69,7 @@
 	},
 	{
 		"name": "$GetTopic_Schema",
-		"order": 4,
+		"order": 6,
 		"pvardefs": [
 			{
 				"name": "pcRefTopic",
@@ -69,7 +86,7 @@
 	},
 	{
 		"name": "$GetLstConfig",
-		"order": 5,
+		"order": 7,
 		"pvardefs": [
 			{
 				"name": "pRefLstConfig",
@@ -86,7 +103,7 @@
 	},
 	{
 		"name": "$GetLstHeaders",
-		"order": 6,
+		"order": 8,
 		"pvardefs": [
 			{
 				"name": "pRefLstHeaders",
@@ -103,7 +120,7 @@
 	},
 	{
 		"name": "$GetSchemaStr",
-		"order": 7,
+		"order": 9,
 		"pvardefs": [
 			{
 				"name": "pcRefSchemaStr",
@@ -120,7 +137,7 @@
 	},
 	{
 		"name": "$GetRowSchema",
-		"order": 8,
+		"order": 10,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchema",
@@ -137,7 +154,7 @@
 	},
 	{
 		"name": "$DefRowSchema",
-		"order": 9,
+		"order": 11,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchema",
@@ -154,7 +171,7 @@
 	},
 	{
 		"name": "$DefRowSchemaInfo",
-		"order": 10,
+		"order": 12,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchemaInfo",
@@ -171,7 +188,7 @@
 	},
 	{
 		"name": "$DefLstHeaders",
-		"order": 11,
+		"order": 13,
 		"pvardefs": [
 			{
 				"name": "pcRefLstHeaders",

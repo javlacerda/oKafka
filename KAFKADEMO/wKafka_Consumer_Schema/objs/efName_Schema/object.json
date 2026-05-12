@@ -26,7 +26,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivRowMessage.message.name",
+		"dataname": "ivRowMessage.Message.Name",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

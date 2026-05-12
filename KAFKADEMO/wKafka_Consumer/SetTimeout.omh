@@ -1,7 +1,7 @@
 Do lvRowParam.$define()
-Do lvRowParam.$cols.$add("timeout",kInteger,k32bitint)
+Do lvRowParam.$cols.$add("Timeout",kInteger,k32bitint)
 
-Calculate lvRowParam.timeout as ivnTimeout
+Calculate lvRowParam.Timeout as ivnTimeout
 
 Do ivoKafka.$callmethod("okafka","set_timeout",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
 If not(lvbOk)

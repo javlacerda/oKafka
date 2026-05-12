@@ -26,7 +26,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivRowMessage.message.email",
+		"dataname": "ivRowMessage.Message.Email",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

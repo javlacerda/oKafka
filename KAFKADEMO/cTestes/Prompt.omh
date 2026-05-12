@@ -1,5 +1,0 @@
-
-Prompt for input Qty of messages: Returns lvnQuantity (Cancel button)
-If msgcancelled()
-	Quit method kFalse
-End If

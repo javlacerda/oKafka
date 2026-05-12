@@ -19,15 +19,15 @@ If not(lvbOk)
 	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 Else
 	If ivbSuccess
-		If ivRowResult.hasMessage
+		If ivRowResult.HasMessage
 			Do method FillRowMessage
 			Redraw (Refresh now) gbConsumer_One
 			
 			Do lvRowParamCommit.$define()
-			Do lvRowParamCommit.$cols.$add("topic",kCharacter,kSimplechar)
-			Do lvRowParamCommit.$cols.$add("offset",kInteger,k64bitint)
-			Do lvRowParamCommit.$cols.$add("partition",kInteger,k32bitint)
-			Do lvRowParamCommit.$assigncols(ivcTopic,ivRowResult.offset,ivRowResult.partition)
+			Do lvRowParamCommit.$cols.$add("Topic",kCharacter,kSimplechar)
+			Do lvRowParamCommit.$cols.$add("Offset",kInteger,k64bitint)
+			Do lvRowParamCommit.$cols.$add("Partition",kInteger,k32bitint)
+			Do lvRowParamCommit.$assigncols(ivcTopic,ivRowResult.Offset,ivRowResult.Partition)
 			
 			Do ivoKafka.$callmethod("okafka","commit",lvRowParamCommit,kTrue,lvcErrorText) Returns lvbOk
 			If not(lvbOk)

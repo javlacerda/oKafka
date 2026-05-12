@@ -1,6 +1,6 @@
 {
 	"ident": 1122,
-	"order": 36,
+	"order": 24,
 	"objtype": "kCheckbox",
 	"properties": {
 		"active": true,
@@ -19,7 +19,7 @@
 		},
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivRowRecord.active",
+		"dataname": "ivRowRecord.Active",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,
@@ -48,7 +48,7 @@
 		"mouseevents": false,
 		"nodropcursor": 0,
 		"nogray": false,
-		"objlink": 16,
+		"objlink": 17,
 		"osdropflags": "kOSDROPnone",
 		"rmouseevents": false,
 		"secondarybackcolor": "RGB(0,0,0)",

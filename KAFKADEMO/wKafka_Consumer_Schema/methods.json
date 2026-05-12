@@ -101,13 +101,6 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcColName",
-				"order": 7,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
 				"name": "lvcErrorText",
 				"order": 5,
 				"type": "kCharacter",
@@ -129,20 +122,6 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvnLoopCol",
-				"order": 8,
-				"type": "kInteger",
-				"subtype": "k32bitint",
-				"sublen": 0
-			},
-			{
-				"name": "lvRefHeaders",
-				"order": 1,
-				"type": "kItemref",
-				"subtype": "",
-				"sublen": 0
-			},
-			{
 				"name": "lvRowParam",
 				"order": 2,
 				"type": "kRow",
@@ -152,7 +131,7 @@
 		]
 	},
 	{
-		"name": "$OnKafkaError",
+		"name": "$OnPythonError",
 		"order": 6,
 		"pvardefs": [
 			{
@@ -175,7 +154,7 @@
 		]
 	},
 	{
-		"name": "$OnKafkaSuccess",
+		"name": "$OnPythonSuccess",
 		"order": 7,
 		"pvardefs": [
 			{
@@ -312,13 +291,23 @@
 
 		],
 		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "FillLstHeaders",
+		"order": 15,
+		"pvardefs": [
 			{
-				"name": "lvcColName",
-				"order": 3,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
+				"name": "pRefLstHeaders",
+				"order": 5,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
 			{
 				"name": "lvnLoop",
 				"order": 2,
@@ -327,7 +316,14 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvRefHeaders",
+				"name": "lvRefLstItem",
+				"order": 3,
+				"type": "kItemref",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRefRowHeaders",
 				"order": 1,
 				"type": "kItemref",
 				"subtype": "",
@@ -337,7 +333,7 @@
 	},
 	{
 		"name": "ConsumeOcc_Open",
-		"order": 15,
+		"order": 16,
 		"pvardefs": [
 
 		],
@@ -374,7 +370,7 @@
 	},
 	{
 		"name": "ConsumeOcc_Consume",
-		"order": 16,
+		"order": 17,
 		"pvardefs": [
 
 		],
@@ -385,13 +381,6 @@
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcColName",
-				"order": 7,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvcErrorText",
@@ -408,20 +397,6 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvnLoopCol",
-				"order": 8,
-				"type": "kInteger",
-				"subtype": "k32bitint",
-				"sublen": 0
-			},
-			{
-				"name": "lvRefHeaders",
-				"order": 1,
-				"type": "kItemref",
-				"subtype": "",
-				"sublen": 0
-			},
-			{
 				"name": "lvRowParam",
 				"order": 2,
 				"type": "kRow",
@@ -432,7 +407,7 @@
 	},
 	{
 		"name": "ConsumeOcc_Close",
-		"order": 17,
+		"order": 18,
 		"pvardefs": [
 
 		],
@@ -462,7 +437,7 @@
 	},
 	{
 		"name": "DefBtnsConsumeOcc",
-		"order": 18,
+		"order": 19,
 		"pvardefs": [
 
 		],

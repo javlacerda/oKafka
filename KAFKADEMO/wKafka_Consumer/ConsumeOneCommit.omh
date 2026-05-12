@@ -19,11 +19,11 @@ If not(lvbOk)
 	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 Else
 	If ivbSuccess
-		If ivRowResult.hasMessage
+		If ivRowResult.HasMessage
 			Do method FillRowMessage
 			Redraw (Refresh now) gbConsumer
 			
-			Do method CommitOffset (ivRowResult.offset,ivRowResult.partition)
+			Do method CommitOffset (ivRowResult.Offset,ivRowResult.Partition)
 		Else
 			Do $cwind.$showmessage("No messages!")
 		End If

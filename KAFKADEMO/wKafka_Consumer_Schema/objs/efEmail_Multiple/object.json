@@ -26,7 +26,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivLstMessages.message.email",
+		"dataname": "ivLstMessages.Message.Email",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

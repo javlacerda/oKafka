@@ -1,18 +1,18 @@
 Do pRefRowParam.$define()
-Do pRefRowParam.$cols.$add("server",kCharacter,kSimplechar)
-Do pRefRowParam.$cols.$add("topic",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("Server",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("Topic",kCharacter,kSimplechar)
 If ivbForcePartition
-	Do pRefRowParam.$cols.$add("partition",kInteger,k32bitint)
+	Do pRefRowParam.$cols.$add("Partition",kInteger,k32bitint)
 End If
-Do pRefRowParam.$cols.$add("clientId",kCharacter,kSimplechar)
-Do pRefRowParam.$cols.$add("groupId",kCharacter,kSimplechar)
-Do pRefRowParam.$cols.$add("config",kList)
-Calculate pRefRowParam.server as ivcServer
-Calculate pRefRowParam.topic as ivcTopic
+Do pRefRowParam.$cols.$add("ClientId",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("GroupId",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("Config",kList)
+Calculate pRefRowParam.Server as ivcServer
+Calculate pRefRowParam.Topic as ivcTopic
 If ivbForcePartition
-	Calculate pRefRowParam.partition as ivnPartition
+	Calculate pRefRowParam.Partition as ivnPartition
 End If
-Calculate pRefRowParam.clientId as ivcClientId
-Calculate pRefRowParam.groupId as ivcGroupId
-Calculate pRefRowParam.config as ivLstConfig
+Calculate pRefRowParam.ClientId as ivcClientId
+Calculate pRefRowParam.GroupId as ivcGroupId
+Calculate pRefRowParam.Config as ivLstConfig
 Quit method

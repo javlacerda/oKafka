@@ -1,0 +1,12 @@
+Set reference lvRefRowHeaders to ivRowResult.Headers
+For lvnLoop from 1 to lvRefRowHeaders.$colcount step 1
+	Set reference lvRefLstItem to lvRefRowHeaders.C[lvnLoop]
+	If lvRefLstItem.$linecount>=2
+		Do pRefLstHeaders.$add(lvRefLstItem.1.C1,lvRefLstItem.2.C1)
+	Else If lvRefLstItem.$linecount=1
+		Do pRefLstHeaders.$add(lvRefLstItem.1.C1,"")
+	Else
+		Do pRefLstHeaders.$add("","")
+	End If
+End For
+Quit method

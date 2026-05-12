@@ -2,14 +2,14 @@
 	"classtype": "kSystemtable",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 20,
-	"nextident": 12,
+	"internalversion": 38,
+	"nextident": 13,
 	"properties": {
 		"componenttype": "kCompStoreHidden",
 		"createdate": "2025-06-11 22:41:47",
 		"desc": "",
 		"external": false,
-		"moddate": "2025-09-02 11:42:01",
+		"moddate": "2026-04-23 23:07:28",
 		"showascheckedout": false,
 		"userinfo": "",
 		"vcsrevision": 0,
@@ -936,6 +936,205 @@
 						"fontstyle": "kPlain",
 						"forecolor": "RGB(0,0,0)",
 						"textcolor": "kColorBtnText"
+					}
+				}
+			]
+		},
+		{
+			"name": "PrzComplexGrid",
+			"ident": 12,
+			"objtype": "kComplexGrid",
+			"properties": {
+				"desc": "Prozis - ComplexGrid",
+				"hasalign": false,
+				"hasbackcolor": false,
+				"hasbackgroundtheme": false,
+				"hasbackpattern": false,
+				"hasbordercolor": false,
+				"haseffect": true,
+				"hasfontname": false,
+				"hasfontsize": false,
+				"hasfontstyle": false,
+				"hasforecolor": false,
+				"hastextcolor": false
+			},
+			"customproperties": [
+				{
+					"name": "extendedgridlines",
+					"type": 4
+				},
+				{
+					"name": "headerlinestyle",
+					"type": 8
+				},
+				{
+					"name": "headerborder",
+					"type": 5
+				},
+				{
+					"name": "horzfooterborder",
+					"type": 5
+				},
+				{
+					"name": "rowdividerlinestyle",
+					"type": 8
+				},
+				{
+					"name": "rowborder",
+					"type": 5
+				},
+				{
+					"name": "vertheaderborder",
+					"type": 5
+				},
+				{
+					"name": "vertheaderlinestyle",
+					"type": 8
+				},
+				{
+					"name": "horzheaderborder",
+					"type": 5
+				},
+				{
+					"name": "horzheaderlinestyle",
+					"type": 8
+				},
+				{
+					"name": "horzheaderfillcolor",
+					"type": 6
+				},
+				{
+					"name": "vertheaderfillcolor",
+					"type": 6
+				},
+				{
+					"name": "headerfillcolor",
+					"type": 6
+				}
+			],
+			"platforms": [
+				{
+					"name": "kMSWindows",
+					"properties": {
+						"align": "kLeftJst",
+						"backcolor": "RGB(0,0,0)",
+						"backgroundtheme": "kBGThemeNone",
+						"backpattern": 0,
+						"bordercolor": "RGB(0,0,0)",
+						"effect": "kBorderSingleInset",
+						"fontname": "",
+						"fontsize": 0,
+						"fontstyle": "kPlain",
+						"forecolor": "RGB(0,0,0)",
+						"textcolor": "RGB(0,0,0)"
+					},
+					"custompropertyvalues": {
+						"extendedgridlines": true,
+						"headerlinestyle": 9,
+						"headerborder": "kJSborderSingleEmbossed",
+						"horzfooterborder": "kJSborderSingleEmbossed",
+						"rowdividerlinestyle": 15,
+						"rowborder": "kJSborderSingleEmbossed",
+						"vertheaderborder": "kBorderSingleEmbossed",
+						"vertheaderlinestyle": 9,
+						"horzheaderborder": "kJSborderSingleEmbossed",
+						"horzheaderlinestyle": 9,
+						"horzheaderfillcolor": "kColor3DFace",
+						"vertheaderfillcolor": "kColor3DFace",
+						"headerfillcolor": "kColor3DFace"
+					}
+				},
+				{
+					"name": "kUnix",
+					"properties": {
+						"align": "kLeftJst",
+						"backcolor": "RGB(0,0,0)",
+						"backgroundtheme": "kBGThemeNone",
+						"backpattern": 0,
+						"bordercolor": "RGB(0,0,0)",
+						"effect": "kBorderSingleInset",
+						"fontname": "",
+						"fontsize": 0,
+						"fontstyle": "kPlain",
+						"forecolor": "RGB(0,0,0)",
+						"textcolor": "RGB(0,0,0)"
+					},
+					"custompropertyvalues": {
+						"extendedgridlines": true,
+						"headerlinestyle": 9,
+						"headerborder": "kJSborderSingleEmbossed",
+						"horzfooterborder": "kJSborderNone",
+						"rowdividerlinestyle": 15,
+						"rowborder": "kJSborderSingleEmbossed",
+						"vertheaderborder": "kBorderSingleEmbossed",
+						"vertheaderlinestyle": 9,
+						"horzheaderborder": "kJSborderSingleEmbossed",
+						"horzheaderlinestyle": 9,
+						"horzheaderfillcolor": "kColor3DFace",
+						"vertheaderfillcolor": "kColor3DFace",
+						"headerfillcolor": "kColorDefault"
+					}
+				},
+				{
+					"name": "kmacOS",
+					"properties": {
+						"align": "kLeftJst",
+						"backcolor": "RGB(0,0,0)",
+						"backgroundtheme": "kBGThemeNone",
+						"backpattern": 0,
+						"bordercolor": "RGB(0,0,0)",
+						"effect": "kBorderSingleInset",
+						"fontname": "",
+						"fontsize": 0,
+						"fontstyle": "kPlain",
+						"forecolor": "RGB(0,0,0)",
+						"textcolor": "RGB(0,0,0)"
+					},
+					"custompropertyvalues": {
+						"extendedgridlines": true,
+						"headerlinestyle": 9,
+						"headerborder": "kJSborderSingleEmbossed",
+						"horzfooterborder": "kJSborderNone",
+						"rowdividerlinestyle": 15,
+						"rowborder": "kJSborderSingleEmbossed",
+						"vertheaderborder": "kBorderSingleEmbossed",
+						"vertheaderlinestyle": 9,
+						"horzheaderborder": "kJSborderSingleEmbossed",
+						"horzheaderlinestyle": 9,
+						"horzheaderfillcolor": "kColor3DFace",
+						"vertheaderfillcolor": "kColor3DFace",
+						"headerfillcolor": "kColorDefault"
+					}
+				},
+				{
+					"name": "kJavaScript",
+					"properties": {
+						"align": "kLeftJst",
+						"backcolor": "RGB(0,0,0)",
+						"backgroundtheme": "kBGThemeNone",
+						"backpattern": 0,
+						"bordercolor": "RGB(0,0,0)",
+						"effect": "kBorderSingleInset",
+						"fontname": "",
+						"fontsize": 0,
+						"fontstyle": "kPlain",
+						"forecolor": "RGB(0,0,0)",
+						"textcolor": "RGB(0,0,0)"
+					},
+					"custompropertyvalues": {
+						"extendedgridlines": true,
+						"headerlinestyle": 9,
+						"headerborder": "kJSborderSingleEmbossed",
+						"horzfooterborder": "kJSborderNone",
+						"rowdividerlinestyle": 15,
+						"rowborder": "kJSborderSingleEmbossed",
+						"vertheaderborder": "kBorderSingleEmbossed",
+						"vertheaderlinestyle": 9,
+						"horzheaderborder": "kJSborderSingleEmbossed",
+						"horzheaderlinestyle": 9,
+						"horzheaderfillcolor": "kColor3DFace",
+						"vertheaderfillcolor": "kColor3DFace",
+						"headerfillcolor": "kColorDefault"
 					}
 				}
 			]

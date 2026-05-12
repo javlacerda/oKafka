@@ -19,7 +19,7 @@
 		},
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivLstMessagesOcc.message.active",
+		"dataname": "ivLstMessagesOcc.Message.Active",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,

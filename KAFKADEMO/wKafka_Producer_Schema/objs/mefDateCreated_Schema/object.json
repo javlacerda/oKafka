@@ -1,6 +1,6 @@
 {
 	"ident": 1125,
-	"order": 37,
+	"order": 25,
 	"objtype": "kMaskedEntry",
 	"properties": {
 		"active": true,
@@ -24,7 +24,7 @@
 		"contenttip": "",
 		"contextmenu": "",
 		"cursor": 0,
-		"dataname": "ivRowRecord.dateCreated",
+		"dataname": "ivRowRecord.DateCreated",
 		"desgroup": 0,
 		"designactive": true,
 		"deslock": false,
@@ -58,7 +58,7 @@
 		"mouseevents": false,
 		"negallowed": false,
 		"nodropcursor": 0,
-		"objlink": 16,
+		"objlink": 17,
 		"osdropflags": "kOSDROPnone",
 		"pastestripscontrolcharacters": false,
 		"rmouseevents": false,

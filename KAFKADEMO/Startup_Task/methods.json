@@ -21,7 +21,7 @@
 	},
 	{
 		"name": "$GetPythonWorker",
-		"order": 4,
+		"order": 3,
 		"pvardefs": [
 
 		],

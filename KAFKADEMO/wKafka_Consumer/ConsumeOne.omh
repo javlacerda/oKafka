@@ -19,7 +19,7 @@ If not(lvbOk)
 	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
 Else
 	If ivbSuccess
-		If ivRowResult.hasMessage
+		If ivRowResult.HasMessage
 			Do method FillRowMessage
 			Redraw (Refresh now) gbConsumer
 		Else

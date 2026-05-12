@@ -8,6 +8,6 @@ Calculate ivcMessage as con("Simple text message from Omnis via Python Worker: "
 Do ivLstLogs.$define()
 Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
 
-Do $clibstartuptask.$GetPythonWorker() Returns ivoKafka
-Do ivoKafka.$SetCallingInstance($cinst().$ref)
+Do $clibstartuptask.$GetPythonWorker() Returns ivoKafkaPython
+Do ivoKafkaPython.$SetCallingInstance($cinst().$ref)
 Quit method

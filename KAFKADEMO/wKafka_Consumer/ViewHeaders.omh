@@ -3,5 +3,5 @@ If pRefLstMessages.$linecount=0|pRefLstMessages.$line=0
 	Quit method
 End If
 
-Do $clib.$windows.wViewHeaders.$openmodal("*",kWindowCenter,pRefLstMessages.headers)
+Do $clib.$windows.wView_Headers.$openmodal("*",kWindowCenter,pRefLstMessages.Headers)
 Quit method
