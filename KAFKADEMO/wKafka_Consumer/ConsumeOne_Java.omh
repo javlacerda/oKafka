@@ -1,0 +1,35 @@
+Do ivRowMessage.$clear()
+Do ivLstHeaders.$clear()
+Redraw (Refresh now) gbConsumer
+
+Do method CreateRowParam (lvRowParam)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","connect",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method
+End If
+If not(ivbSuccess)
+	Quit method
+End If
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","consume",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+Else
+	If ivbSuccess
+		If ivRowResult.HasMessage
+			Do method FillRowMessage
+			Redraw (Refresh now) gbConsumer
+		Else
+			Do $cwind.$showmessage("No messages!")
+		End If
+	End If
+End If
+
+Do lvRowParam.$define()
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","close",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+End If
+Quit method

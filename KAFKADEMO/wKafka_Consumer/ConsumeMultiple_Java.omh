@@ -1,0 +1,55 @@
+Do ivLstMessages.$clear()
+Redraw cgMessages
+
+Do method CreateRowParam (lvRowParam)
+
+Do lvLstHeaders.$copydefinition(ivLstHeaders)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","connect",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method
+End If
+If not(ivbSuccess)
+	Quit method
+End If
+
+For lvnLoop from 1 to ivnQuantity step 1
+	Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","consume",lvRowParam) Returns lvbOk
+	If not(lvbOk)
+		Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Else
+		If ivbSuccess
+			If ivRowResult.HasMessage
+				Do ivLstMessages.$add()
+				Calculate ivLstMessages.$line as ivLstMessages.$linecount
+				Calculate ivLstMessages.Offset as ivRowResult.Offset
+				Calculate ivLstMessages.Partition as ivRowResult.Partition
+				Calculate ivLstMessages.Topic as ivRowResult.Topic
+				Calculate ivLstMessages.Key as ivRowResult.Key
+				Calculate ivLstMessages.Timestamp as ivRowResult.Timestamp
+				Calculate ivLstMessages.Message as ivRowResult.Value
+				
+				Do lvLstHeaders.$clear()
+				Do method FillLstHeaders (lvLstHeaders)
+				Calculate ivLstMessages.Headers as lvLstHeaders
+			Else
+				Do $cwind.$showmessage("No messages in the queue!//Do you want to continue?","Info",kMsgNoYes) Returns lvbOk
+				If not(lvbOk)
+					Break to end of loop
+				End If
+			End If
+		Else
+			Break to end of loop
+		End If
+	End If
+End For
+
+Redraw (Refresh now) cgMessages
+
+Do lvRowParam.$define()
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumer","close",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+End If
+Quit method

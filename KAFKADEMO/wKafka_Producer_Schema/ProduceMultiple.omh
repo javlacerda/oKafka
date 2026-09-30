@@ -1,55 +1,7 @@
-Calculate lvnTimeIni as #CT
-Do method DefineRowParam (lvRowParam)
-Calculate lvRowParam.Server as ivcServer
-Calculate lvRowParam.Config as ivLstConfig
-Calculate lvRowParam.SchemaRegistryUrl as ivcSchemaRegistryUrl
-
-# Do method RegisterSchema (lvRowParam.SchemaId) Returns lvbOk
-# If not(lvbOk)
-# Quit method
-# End If
-# OU
-Calculate lvRowParam.Schema as ivcSchemaStr
-
-Do ivoKafka.$callmethod("okafka","connect_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-If not(lvbOk)
-	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-	Quit method
+If ivnType=ucKafka.PYTHON_OW
+	Do method ProduceMultiple_Python
+Else If ivnType=ucKafka.JAVA_OW
+	Do method ProduceMultiple_Java
+Else
+	Do method ProduceMultiple_xcomp
 End If
-If not(ivbSuccess)
-	Quit method
-End If
-
-Calculate lvRowParam.Topic as ivcTopic
-Calculate lvRowParam.Partition as ivnPartition
-Calculate lvRowParam.Config as ivLstConfig
-Calculate lvRowParam.Headers as ivLstHeaders
-
-For lvnLoop from 1 to ivnQuantity step 1
-	Calculate lvRowParam.Key as ivRowRecord.Id
-	Calculate lvRowParam.Message as ivRowRecord
-	
-	Do ivoKafka.$callmethod("okafka","produce",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-	If not(lvbOk)
-		Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-		Break to end of loop
-	End If
-	If not(ivbSuccess)
-		Break to end of loop
-	End If
-End For
-
-Do lvRowParam.$define()
-
-Do ivoKafka.$callmethod("okafka","close_producer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-If not(lvbOk)
-	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-	Quit method
-End If
-
-If ivbSuccess
-	Calculate lvnDuration as (#CT-lvnTimeIni)/60
-	Do $cwind.$showmessage(con("Success!//",lvnLoop-1," messages created//Duration: ",lvnDuration," seconds"),"Info",kMsgIcon)
-End If
-
-Quit method

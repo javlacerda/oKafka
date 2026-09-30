@@ -1,0 +1,25 @@
+Do ivLstMessagesOcc.$clear()
+Redraw cgMessagesOcc
+
+Do ivoConsumer.$setbroker(ivcServer)
+Do ivoConsumer.$settopic(ivcTopic)
+Do ivoConsumer.$setgroupid(ivcGroupId)
+Do ivoConsumer.$setclientid(ivcClientId)
+Do ivoConsumer.$settimeout(ivnTimeout)
+If ivbForcePartition
+	Do ivoConsumer.$setpartition(ivnPartition)
+End If
+
+For lvnLoop from 1 to ivLstConfig.$linecount step 1
+	Do ivoConsumer.$setproperty(ivLstConfig.[lvnLoop].C1,ivLstConfig.[lvnLoop].C2)
+End For
+
+Do ivoConsumer.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(ivoConsumer.$geterrormessage(),"Error")
+	Quit method
+End If
+
+Calculate ivbConsumerOpen as kTrue
+Do method DefBtnsConsumeOcc
+Quit method

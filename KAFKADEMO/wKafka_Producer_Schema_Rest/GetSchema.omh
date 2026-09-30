@@ -1,0 +1,24 @@
+Calculate lvcUrl as con('/subjects/',ivcTopic,'-value/versions/latest')
+Do lvoHttp.$SetHost(ivcSchemaRegistryServer)
+Do lvoHttp.$SetUri(lvcUrl)
+
+Do lvoHttp.$HttpGet() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoHttp.$GetMsgErro(),"Error")
+	Quit method kFalse
+End If
+
+Do lvoHttp.$GetResponseContent() Returns lvcResponse
+Do OJSON.$jsontolistorrow(lvcResponse,lvcErrorMsg,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMsg,"Error")
+	Quit method kFalse
+End If
+
+Calculate ivnSchemaId as lvRowResponse.id
+Calculate ivcSchemaStr as lvRowResponse.schema
+
+Do replaceall(ivcSchemaStr,'\"','"') Returns ivcSchemaStr
+Do OJSON.$formatjson(ivcSchemaStr) Returns ivcSchemaStr
+Redraw (Refresh now) efSchemaId,mlefSchemaStr
+Quit method kTrue

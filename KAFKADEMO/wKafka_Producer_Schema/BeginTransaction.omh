@@ -1,0 +1,14 @@
+If ivnType=ucKafka.PYTHON_OW
+	Do method BeginTransaction_Python Returns lvbOk
+Else If ivnType=ucKafka.JAVA_OW
+	Do method BeginTransaction_Java Returns lvbOk
+Else
+	Do method BeginTransaction_xcomp Returns lvbOk
+End If
+
+If lvbOk
+	Calculate $cwind.$objs.tpPrinc.$objs.gbInfoTransaction.$bobjs.txtInfoTransaction.$text as "Transaction Started"
+	Calculate ivbInTransaction as kTrue
+	Do method DefTransactionFields
+End If
+Quit method lvbOk

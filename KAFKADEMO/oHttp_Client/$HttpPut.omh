@@ -1,0 +1,23 @@
+Do method InitVars
+
+Do method BuildFullUri
+
+If ivbFormData
+	Do $cinst.$init(ivcFullUri,kOW3httpMethodPut,ivLstHeaders,kOW3httpMultiPartFormData) Returns lvbOk
+Else
+	Do $cinst.$init(ivcFullUri,kOW3httpMethodPut,ivLstHeaders,ivbinContent) Returns lvbOk
+End If
+If not(lvbOk)
+	Calculate ivnErro as $cinst.$errorcode
+	Calculate ivcMsgErro as $cinst.$errortext
+	Quit method kFalse
+End If
+
+Do $cinst.$run() Returns lvbOk
+If not(lvbOk)
+	Calculate ivnErro as $cinst.$errorcode
+	Calculate ivcMsgErro as $cinst.$errortext
+	Quit method kFalse
+End If
+
+Quit method ivnErro=0

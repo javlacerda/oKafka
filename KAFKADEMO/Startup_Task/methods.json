@@ -28,5 +28,15 @@
 		"lvardefs": [
 
 		]
+	},
+	{
+		"name": "$GetJavaWorker",
+		"order": 4,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
 	}
 ]

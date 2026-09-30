@@ -1,29 +1,8 @@
-Do lvRowParam.$define()
-Do lvLstHeaders.$copydefinition(ivLstHeaders)
-
-Do ivoKafka.$callmethod("okafka","consume",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-If not(lvbOk)
-	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
+If ivnType=ucKafka.PYTHON_OW
+	Do method ConsumeOcc_Consume_Python
+Else If ivnType=ucKafka.JAVA_OW
+	Do method ConsumeOcc_Consume_Java
 Else
-	If ivbSuccess
-		If ivRowResult.HasMessage
-			Do ivLstMessagesOcc.$add()
-			Calculate ivLstMessagesOcc.$line as ivLstMessagesOcc.$linecount
-			Calculate ivLstMessagesOcc.Offset as ivRowResult.Offset
-			Calculate ivLstMessagesOcc.Partition as ivRowResult.Partition
-			Calculate ivLstMessagesOcc.Topic as ivRowResult.Topic
-			Calculate ivLstMessagesOcc.Key as ivRowResult.Key
-			Calculate ivLstMessagesOcc.Timestamp as ivRowResult.Timestamp
-			Calculate ivLstMessagesOcc.Message as ivRowResult.Value
-			
-			Do lvLstHeaders.$clear()
-			Do method FillLstHeaders (lvLstHeaders)
-			Calculate ivLstMessagesOcc.Headers as lvLstHeaders
-		Else
-			Do $cwind.$showmessage("No messages in the queue!","Info",kMsgNoYes)
-		End If
-	End If
+	Do method ConsumeOcc_Consume_xcomp
 End If
-
-Redraw (Refresh now) cgMessagesOcc
 Quit method

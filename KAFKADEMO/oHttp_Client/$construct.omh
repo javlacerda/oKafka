@@ -1,0 +1,8 @@
+Do $cinst.$setsecureoptions(kFalse,kFalse)
+
+Do ivLstHeaders.$define()
+Do ivLstHeaders.$cols.$add("name",kCharacter,kSimplechar,1000)
+Do ivLstHeaders.$cols.$add("value",kCharacter,kSimplechar,10000000)
+
+Do ivLstQueryParams.$copydefinition(ivLstHeaders)
+Quit method

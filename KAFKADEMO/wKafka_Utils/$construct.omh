@@ -1,3 +1,6 @@
+Calculate ivnType as pnType
+Do inherited
+
 Do ivoData.$GetServer(ivcServer)
 Do ivoData.$GetSchemaRegistryUrl(ivcSchemaRegistryUrl)
 Do ivoData.$GetTopic_Schema(ivcTopic)
@@ -13,9 +16,4 @@ Do ivLstTopics.$copydefinition(ivLstSubjects)
 Calculate ivcSubjectGetSchemaFromSubject as con(ivcTopic,"-value")
 Calculate ivcSubjectRegisterSchema as ivcSubjectGetSchemaFromSubject
 
-Do ivLstLogs.$define()
-Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
-
-Do $clibstartuptask.$GetPythonWorker() Returns ivoKafka
-Do ivoKafka.$SetCallingInstance($cinst().$ref)
 Quit method

@@ -1,0 +1,9 @@
+Calculate ivnErro as 0
+Calculate ivcMsgErro as ""
+
+Do $cinst.$multipartaddfield(pcNomeCampo,pcValor) Returns lvbOk
+If not(lvbOk)
+	Calculate ivnErro as $cinst.$errorcode
+	Calculate ivcMsgErro as $cinst.$errortext
+End If
+Quit method lvbOk

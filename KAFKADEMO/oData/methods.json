@@ -17,6 +17,23 @@
 		]
 	},
 	{
+		"name": "$GetServerRest",
+		"order": 2,
+		"pvardefs": [
+			{
+				"name": "pcRefServer",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
 		"name": "$GetSchemaRegistryUrl",
 		"order": 3,
 		"pvardefs": [
@@ -85,12 +102,12 @@
 		]
 	},
 	{
-		"name": "$GetLstConfig",
+		"name": "$GetClientId",
 		"order": 7,
 		"pvardefs": [
 			{
-				"name": "pRefLstConfig",
-				"order": 2,
+				"name": "pcRefTopic",
+				"order": 1,
 				"type": "kFieldreference",
 				"subtype": 0,
 				"sublen": 0,
@@ -102,8 +119,50 @@
 		]
 	},
 	{
-		"name": "$GetLstHeaders",
+		"name": "$GetGroupId",
 		"order": 8,
+		"pvardefs": [
+			{
+				"name": "pcRefTopic",
+				"order": 1,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetLstConfig",
+		"order": 9,
+		"pvardefs": [
+			{
+				"name": "pnOperation",
+				"order": 1,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1
+			},
+			{
+				"name": "pRefLstConfig",
+				"order": 2,
+				"type": "kFieldreference",
+				"subtype": 0,
+				"sublen": 0,
+				"param": 2
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "$GetLstHeaders",
+		"order": 10,
 		"pvardefs": [
 			{
 				"name": "pRefLstHeaders",
@@ -120,7 +179,7 @@
 	},
 	{
 		"name": "$GetSchemaStr",
-		"order": 9,
+		"order": 11,
 		"pvardefs": [
 			{
 				"name": "pcRefSchemaStr",
@@ -137,7 +196,7 @@
 	},
 	{
 		"name": "$GetRowSchema",
-		"order": 10,
+		"order": 12,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchema",
@@ -154,7 +213,7 @@
 	},
 	{
 		"name": "$DefRowSchema",
-		"order": 11,
+		"order": 13,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchema",
@@ -171,7 +230,7 @@
 	},
 	{
 		"name": "$DefRowSchemaInfo",
-		"order": 12,
+		"order": 14,
 		"pvardefs": [
 			{
 				"name": "pRefRowSchemaInfo",
@@ -188,7 +247,7 @@
 	},
 	{
 		"name": "$DefLstHeaders",
-		"order": 13,
+		"order": 15,
 		"pvardefs": [
 			{
 				"name": "pcRefLstHeaders",

@@ -2,7 +2,7 @@
 	"classtype": "kObjectclass",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 12,
+	"internalversion": 5,
 	"superclass": ".OW3.OW3 Worker Objects\\PYTHONWorker",
 	"designtaskname": "Startup_Task",
 	"cvardefs": [
@@ -10,28 +10,49 @@
 	],
 	"ivardefs": [
 		{
+			"name": "ivbSuccess",
+			"order": 3,
+			"type": "kBoolean",
+			"subtype": 0,
+			"sublen": 0
+		},
+		{
+			"name": "ivcErrorMessage",
+			"order": 4,
+			"type": "kCharacter",
+			"subtype": "kSimplechar",
+			"sublen": 100
+		},
+		{
 			"name": "ivRefCallingInstance",
 			"order": 1,
 			"type": "kItemref",
 			"subtype": "",
 			"sublen": 0
+		},
+		{
+			"name": "ivRowResult",
+			"order": 2,
+			"type": "kRow",
+			"subtype": "",
+			"sublen": 0
 		}
 	],
 	"properties": {
-		"canremotedebugwhenlocked": false,
+		"canremotedebugwhenlocked": true,
 		"collectperformancedata": false,
 		"componenticon": 0,
 		"componentinfo": {
 
 		},
 		"componenttype": "kCompStoreHidden",
-		"createdate": "2025-06-12 19:05:13",
+		"createdate": "2026-06-21 18:51:52",
 		"desc": "",
 		"editor": "",
 		"editordata": "",
 		"external": true,
 		"issupercomponent": false,
-		"moddate": "2026-04-23 22:22:07",
+		"moddate": "2026-06-21 22:35:17",
 		"selfcontained": false,
 		"showascheckedout": false,
 		"userinfo": "",

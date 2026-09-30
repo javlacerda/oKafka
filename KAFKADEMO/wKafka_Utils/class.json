@@ -2,7 +2,8 @@
 	"classtype": "kWindow",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 15,
+	"internalversion": 62,
+	"superclass": "wBase",
 	"designtaskname": "Startup_Task",
 	"nextident": 1160,
 	"lastgroupident": 0,
@@ -10,13 +11,6 @@
 
 	],
 	"ivardefs": [
-		{
-			"name": "ivbSuccess",
-			"order": 2,
-			"type": "kBoolean",
-			"subtype": 0,
-			"sublen": 0
-		},
 		{
 			"name": "ivcSchemaRegistryUrl",
 			"order": 5,
@@ -67,13 +61,6 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivLstLogs",
-			"order": 15,
-			"type": "kList",
-			"subtype": "",
-			"sublen": 0
-		},
-		{
 			"name": "ivLstSubjects",
 			"order": 14,
 			"type": "kList",
@@ -101,27 +88,13 @@
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
-			"initval": "60"
+			"initval": "10"
 		},
 		{
 			"name": "ivoData",
 			"order": 21,
 			"type": "kObject",
 			"subtype": "oData",
-			"sublen": 0
-		},
-		{
-			"name": "ivoKafka",
-			"order": 6,
-			"type": "kObjectref",
-			"subtype": "oPython_Worker",
-			"sublen": 0
-		},
-		{
-			"name": "ivRowResult",
-			"order": 3,
-			"type": "kRow",
-			"subtype": "",
 			"sublen": 0
 		},
 		{
@@ -182,14 +155,14 @@
 		"issubwindow": false,
 		"issupercomponent": false,
 		"keepclicks": true,
-		"left": 353,
+		"left": 310,
 		"menuedge": "kBorderNone",
 		"menunames": "",
 		"minheight": 0,
 		"minimizebox": true,
 		"minimizeiconid": 2006,
 		"minwidth": 0,
-		"moddate": "2026-05-12 22:18:27",
+		"moddate": "2026-09-20 17:48:44",
 		"modelessdata": true,
 		"movebehind": true,
 		"osdropflags": "kOSDROPnone",
@@ -209,7 +182,7 @@
 		"toolbarnames": "",
 		"toolbaroptions": "kTBOptionNone",
 		"toolbarpos": "kDockingAreaNone",
-		"top": 132,
+		"top": 178,
 		"userinfo": "",
 		"usesheets": false,
 		"vcsrevision": 0,

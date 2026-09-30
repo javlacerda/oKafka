@@ -1,0 +1,20 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("SchemaRegistryUrl",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("Id",kInteger,k32bitint)
+
+Calculate lvRowParam.SchemaRegistryUrl as ivcSchemaRegistryUrl
+Calculate lvRowParam.Id as ivnId
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OSchemaUtils","getSchemaById",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",ivoKafkaJava.$GetErrorMessage()))
+Else
+	If ivRowResult.Success
+		Do ivRowSchemaInfoFromId.$clear()
+		Calculate ivRowSchemaInfoFromId.Type as ivRowResult.Type
+		Do OJSON.$formatjson(ivRowResult.Schema) Returns ivRowSchemaInfoFromId.Schema
+		
+		Redraw (Refresh now) gbGetSchemaFromId
+	End If
+End If
+Quit method

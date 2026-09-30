@@ -1,0 +1,26 @@
+Do ivLstTopics.$clear()
+
+Do lvoUtils.$setbroker(ivcServer)
+Do lvoUtils.$settimeout(ivnTimeout)
+Do lvoUtils.$setincludeinternaltopics(kTrue)
+
+Do lvoUtils.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoUtils.$geterrormessage(),"Error")
+	Quit method
+End If
+
+Do lvoUtils.$gettopics(lvLstTopics) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(lvoUtils.$geterrormessage(),"Error")
+Else
+	For lvLstTopics.$line from 1 to lvLstTopics.$linecount step 1
+		Do ivLstTopics.$add(lvLstTopics.C1)
+	End For
+	
+	Do ivLstTopics.$sort($ref.Name,kFalse)
+	Do $cwind.$showmessage(con(ivLstTopics.$linecount," topics retrieved!"),"Info",kMsgIcon)
+End If
+
+Redraw (Refresh now) hlbTopics
+Quit method

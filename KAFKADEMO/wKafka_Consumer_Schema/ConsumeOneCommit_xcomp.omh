@@ -1,0 +1,46 @@
+Do ivRowMessage.$clear()
+Do ivLstHeaders.$clear()
+Redraw (Refresh now) gbConsumer_One
+
+Do lvoConsumer.$setbroker(ivcServer)
+Do lvoConsumer.$settopic(ivcTopic)
+Do lvoConsumer.$setgroupid(ivcGroupId)
+Do lvoConsumer.$setclientid(ivcClientId)
+Do lvoConsumer.$settimeout(ivnTimeout)
+Do lvoConsumer.$setschemaregistryurl(ivcSchemaRegistryUrl)
+If ivbForcePartition
+	Do lvoConsumer.$setpartition(ivnPartition)
+End If
+
+For lvnLoop from 1 to ivLstConfig.$linecount step 1
+	Do lvoConsumer.$setproperty(ivLstConfig.[lvnLoop].C1,ivLstConfig.[lvnLoop].C2)
+End For
+
+Do lvoConsumer.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoConsumer.$geterrormessage(),"Error")
+	Quit method
+End If
+
+Do lvoConsumer.$consume(1,ivnTimeout*1000,lvLstRegs) Returns lvbOk
+If lvbOk
+	If lvLstRegs.$linecount>0
+		Calculate lvLstRegs.$line as lvLstRegs.$linecount
+		Do ivRowResult.$copydefinition(lvLstRegs)
+		Do ivRowResult.$assignrow(lvLstRegs)
+		Do method FillRowMessage
+		Redraw (Refresh now) gbConsumer_One
+		
+		Do lvoConsumer.$commit(ivRowMessage.Topic,ivRowMessage.Partition,ivRowMessage.Offset) Returns lvbOk
+		If not(lvbOk)
+			Do $cwind.$showmessage(lvoConsumer.$geterrormessage(),"Error")
+		End If
+	Else
+		Do $cwind.$showmessage("No messages!")
+	End If
+Else
+	Do $cwind.$showmessage(lvoConsumer.$geterrormessage(),"Error")
+End If
+
+Do lvoConsumer.$disconnect()
+Quit method

@@ -1,0 +1,47 @@
+[
+	{
+		"name": "PYTHON_OW",
+		"order": 1,
+		"desc": "",
+		"type": "kInteger",
+		"subtype": "k32bitint",
+		"sublen": 0,
+		"value": "0"
+	},
+	{
+		"name": "JAVA_OW",
+		"order": 2,
+		"desc": "",
+		"type": "kInteger",
+		"subtype": "k32bitint",
+		"sublen": 0,
+		"value": "1"
+	},
+	{
+		"name": "XCOMP",
+		"order": 3,
+		"desc": "",
+		"type": "kInteger",
+		"subtype": "k32bitint",
+		"sublen": 0,
+		"value": "2"
+	},
+	{
+		"name": "PRODUCER",
+		"order": 4,
+		"desc": "",
+		"type": "kInteger",
+		"subtype": "k32bitint",
+		"sublen": 0,
+		"value": "0"
+	},
+	{
+		"name": "CONSUMER",
+		"order": 5,
+		"desc": "",
+		"type": "kInteger",
+		"subtype": "k32bitint",
+		"sublen": 0,
+		"value": "1"
+	}
+]

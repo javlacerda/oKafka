@@ -2,7 +2,7 @@
 	"classtype": "kTask",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 44,
+	"internalversion": 48,
 	"tvardefs": [
 
 	],
@@ -10,6 +10,13 @@
 
 	],
 	"ivardefs": [
+		{
+			"name": "ivoJavaWorker",
+			"order": 1,
+			"type": "kObjectref",
+			"subtype": "oJava_Worker",
+			"sublen": 0
+		},
 		{
 			"name": "ivoPythonWorker",
 			"order": 2,
@@ -32,7 +39,7 @@
 		"editordata": "",
 		"external": true,
 		"issupercomponent": false,
-		"moddate": "2026-02-03 22:26:42",
+		"moddate": "2026-08-14 07:00:26",
 		"showascheckedout": false,
 		"userinfo": "",
 		"vcsrevision": 0,

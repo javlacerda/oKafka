@@ -1,0 +1,32 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("TransactionalId",kCharacter,kSimplechar)
+Calculate lvRowParam.TransactionalId as con("tr_",#CT)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducerSchema","setTransactionalId",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+If not(ivbSuccess)
+	Quit method kFalse
+End If
+
+Do method DefineRowParam (lvRowParam)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducerSchema","connect",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+If not(ivbSuccess)
+	Quit method kFalse
+End If
+
+Do lvRowParam.$define()
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducerSchema","beginTransaction",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+Quit method kTrue

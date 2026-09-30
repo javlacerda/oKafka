@@ -1,0 +1,14 @@
+If ivnType=ucKafka.PYTHON_OW
+	Do method RollbackTransaction_Python Returns lvbOk
+Else If ivnType=ucKafka.JAVA_OW
+	Do method RollbackTransaction_Java Returns lvbOk
+Else
+	Do method RollbackTransaction_xcomp Returns lvbOk
+End If
+
+If lvbOk
+	Calculate $cwind.$objs.tpPrinc.$objs.gbInfoTransaction.$bobjs.txtInfoTransaction.$text as "Transaction Rolledback"
+	Calculate ivbInTransaction as kFalse
+	Do method DefTransactionFields
+End If
+Quit method lvbOk

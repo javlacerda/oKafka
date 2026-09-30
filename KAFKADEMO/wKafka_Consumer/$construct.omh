@@ -1,6 +1,11 @@
+Calculate ivnType as pnType
+Do inherited
+
 Do ivoData.$GetServer(ivcServer)
 Do ivoData.$GetTopic(ivcTopic)
-Do ivoData.$GetLstConfig(ivLstConfig)
+Do ivoData.$GetClientId(ivcClientId)
+Do ivoData.$GetGroupId(ivcGroupId)
+Do ivoData.$GetLstConfig(ucKafka.CONSUMER,ivLstConfig)
 Do ivoData.$DefLstHeaders(ivLstHeaders)
 
 Do ivRowMessage.$define()
@@ -14,12 +19,6 @@ Do ivRowMessage.$cols.$add("Topic",kCharacter,kSimplechar)
 Do ivLstMessages.$copydefinition(ivRowMessage)
 Do ivLstMessages.$cols.$add("Headers",kList)
 Do ivLstMessagesOcc.$copydefinition(ivLstMessages)
-
-Do ivLstLogs.$define()
-Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
-
-Do $clibstartuptask.$GetPythonWorker() Returns ivoKafka
-Do ivoKafka.$SetCallingInstance($cinst().$ref)
 
 Do method DefBtnsConsumeOcc
 Quit method

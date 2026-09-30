@@ -1,0 +1,11 @@
+Do ivoData.$GetServerRest(ivcServer)
+Do ivoData.$GetTopic(ivcTopic)
+Do ivoData.$GetGroupId(ivcGroupId)
+
+Do ivLstMessages.$define()
+Do ivLstMessages.$cols.$add("Offset",kInteger,k32bitint)
+Do ivLstMessages.$cols.$add("Partition",kInteger,k32bitint)
+Do ivLstMessages.$cols.$add("Key",kCharacter,kSimplechar)
+Do ivLstMessages.$cols.$add("Message",kCharacter,kSimplechar)
+Do ivLstMessages.$cols.$add("Topic",kCharacter,kSimplechar)
+Quit method

@@ -1,0 +1,16 @@
+Calculate ivRowResponse as pRow
+
+Calculate ivnErro as ivRowResponse.errorCode
+Calculate ivcMsgErro as ivRowResponse.errorInfo
+
+If ivnErro=0
+	If ivRowResponse.httpStatusCode<200|ivRowResponse.httpStatusCode>299
+		Calculate ivnErro as -999999
+		If isclear(ivcMsgErro)
+			Calculate ivcMsgErro as ivRowResponse.httpStatusText
+		Else
+			Calculate ivcMsgErro as con(ivcMsgErro," ",ivRowResponse.httpStatusText)
+		End If
+	End If
+End If
+Quit method kTrue

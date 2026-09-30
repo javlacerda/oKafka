@@ -1,0 +1,7 @@
+Do ivLstHeaders.$search($ref.name=pcName,kTrue,kFalse,kFalse,kFalse)
+If ivLstHeaders.$line=0
+	Do ivLstHeaders.$add(pcName,pcValue)
+Else
+	Calculate ivLstHeaders.value as pcValue
+End If
+Quit method kTrue

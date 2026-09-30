@@ -1,0 +1,2 @@
+Do $cinst.$AddHeader("Accept","application/json")
+Quit method kTrue

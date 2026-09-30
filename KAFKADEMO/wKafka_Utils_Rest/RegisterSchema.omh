@@ -1,0 +1,31 @@
+Do replaceall(ivcSchemaStr,'"','\"') Returns lvcSchemaStr
+Do replaceall(lvcSchemaStr,kCr,'') Returns lvcSchemaStr
+Do replaceall(lvcSchemaStr,kLf,'') Returns lvcSchemaStr
+
+Begin text block
+Line:{"schema": "[lvcSchemaStr]"}
+End text block
+Get text block lvcData
+
+Do lvoHttp.$SetHost(ivcSchemaRegistryServer)
+Do lvoHttp.$SetUri(con("/subjects/",ivcSubjectRegisterSchema,"/versions?normalize=true"))
+Do lvoHttp.$SetContentFromString(lvcData)
+Do lvoHttp.$AddHeader("Content-Type","application/vnd.schemaregistry.v1+json")
+Do lvoHttp.$AddHeader("Accept","application/vnd.schemaregistry.v1+json,application/vnd.schemaregistry+json,application/json")
+
+Do lvoHttp.$HttpPost() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponse
+
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoHttp.$GetMsgErro(),"Error")
+	Quit method kFalse
+End If
+
+Do OJSON.$jsontolistorrow(lvcResponse,lvcErrorMessage,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMsg,"Error")
+	Quit method kFalse
+End If
+
+Do $cinst.$showmessage(con("Schema ID: ",lvRowResponse.id),"Info")
+Quit method kTrue

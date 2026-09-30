@@ -1,13 +1,20 @@
+Calculate ivnType as pnType
+Do inherited
+
+If ivnType=ucKafka.PYTHON_OW
+	Calculate ivcMessage as con("Simple text message from Omnis using Python Object Worker: ",omnistoiso8601(loctoutc(#D),kTrue))
+Else If ivnType=ucKafka.JAVA_OW
+	Calculate ivcMessage as con("Simple text message from Omnis using Java Object Worker: ",omnistoiso8601(loctoutc(#D),kTrue))
+Else
+	Calculate ivcMessage as con("Simple text message from Omnis using an External Component: ",omnistoiso8601(loctoutc(#D),kTrue))
+End If
+
+Calculate ivcMessageTransaction as ivcMessage
+
 Do ivoData.$GetServer(ivcServer)
 Do ivoData.$GetTopic(ivcTopic)
-Do ivoData.$GetLstConfig(ivLstConfig)
+Do ivoData.$GetLstConfig(ucKafka.PRODUCER,ivLstConfig)
 Do ivoData.$GetLstHeaders(ivLstHeaders)
 
-Calculate ivcMessage as con("Simple text message from Omnis via Python Worker: ",jst(#D,"D:D/M/y H:N:S"))
-
-Do ivLstLogs.$define()
-Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
-
-Do $clibstartuptask.$GetPythonWorker() Returns ivoKafkaPython
-Do ivoKafkaPython.$SetCallingInstance($cinst().$ref)
+Do method DefTransactionFields
 Quit method

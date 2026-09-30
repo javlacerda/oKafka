@@ -1,0 +1,36 @@
+{
+	"ident": 1128,
+	"order": 16397,
+	"objtype": "kText",
+	"properties": {
+		"align": "kCenterJst",
+		"backcolor": "RGBA(kColorBackFill,255)",
+		"backpattern": 15,
+		"bordercolor": "RGBA(0,0,0,255)",
+		"componentinfo": {
+
+		},
+		"designactive": true,
+		"edgefloat": "kEFrightBottom",
+		"effect": "kBorderNone",
+		"fieldstyle": "",
+		"font": 1,
+		"fontsize": 12,
+		"fontstyle": "kBold",
+		"forecolor": "RGBA(kColorForeFill,255)",
+		"height": 38,
+		"left": 1,
+		"linestyle": 1,
+		"objlink": 37,
+		"text": {
+			"type": 14,
+			"calc": "No Transaction"
+		},
+		"textcolor": "kColorWindowText",
+		"top": 1,
+		"userinfo": "",
+		"vertcentertext": true,
+		"visible": true,
+		"width": 1008
+	}
+}

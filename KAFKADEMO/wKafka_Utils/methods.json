@@ -3,6 +3,23 @@
 		"name": "$construct",
 		"order": 1,
 		"pvardefs": [
+			{
+				"name": "pnType",
+				"order": 1,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "RegisterSchema",
+		"order": 2,
+		"pvardefs": [
 
 		],
 		"lvardefs": [
@@ -10,18 +27,7 @@
 		]
 	},
 	{
-		"name": "$destruct",
-		"order": 2,
-		"pvardefs": [
-
-		],
-		"lvardefs": [
-
-		],
-		"empty": true
-	},
-	{
-		"name": "RegisterSchema",
+		"name": "RegisterSchema_Python",
 		"order": 3,
 		"pvardefs": [
 
@@ -35,11 +41,27 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "RegisterSchema_Java",
+		"order": 4,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 5,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
 			},
 			{
 				"name": "lvRowParam",
@@ -51,61 +73,31 @@
 		]
 	},
 	{
-		"name": "$OnPythonError",
-		"order": 4,
+		"name": "Registerschema_xcomp",
+		"order": 5,
 		"pvardefs": [
+
+		],
+		"lvardefs": [
 			{
-				"name": "pError",
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvoUtils",
+				"order": 4,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWSchemaUtils",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowReturn",
 				"order": 1,
 				"type": "kRow",
 				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
-		],
-		"lvardefs": [
-			{
-				"name": "lvcErrorMsg",
-				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			}
-		]
-	},
-	{
-		"name": "$OnPythonSuccess",
-		"order": 5,
-		"pvardefs": [
-			{
-				"name": "pResult",
-				"order": 3,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
-		],
-		"lvardefs": [
-			{
-				"name": "lvcFieldName",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvcMsg",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvnLoop",
-				"order": 2,
-				"type": "kInteger",
-				"subtype": "k32bitint",
 				"sublen": 0
 			}
 		]
@@ -141,37 +133,17 @@
 		]
 	},
 	{
-		"name": "SetTimeout",
+		"name": "GetSchemaBySubject",
 		"order": 9,
 		"pvardefs": [
 
 		],
 		"lvardefs": [
-			{
-				"name": "lvbOk",
-				"order": 3,
-				"type": "kBoolean",
-				"subtype": 0,
-				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvRowParam",
-				"order": 1,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0
-			}
+
 		]
 	},
 	{
-		"name": "GetSchemaBySubject",
+		"name": "GetSchemaBySubject_Python",
 		"order": 10,
 		"pvardefs": [
 
@@ -185,13 +157,6 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
 				"name": "lvRowParam",
 				"order": 2,
 				"type": "kRow",
@@ -201,7 +166,7 @@
 		]
 	},
 	{
-		"name": "GetSchemaById",
+		"name": "GetSchemaBySubject_Java",
 		"order": 11,
 		"pvardefs": [
 
@@ -215,13 +180,6 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
 				"name": "lvRowParam",
 				"order": 2,
 				"type": "kRow",
@@ -231,7 +189,7 @@
 		]
 	},
 	{
-		"name": "GetSubjects",
+		"name": "GetSchemaBySubject_xcomp",
 		"order": 12,
 		"pvardefs": [
 
@@ -245,11 +203,130 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
+				"name": "lvoUtils",
+				"order": 4,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWSchemaUtils",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowReturn",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetSchemaById",
+		"order": 13,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "GetSchemaById_Python",
+		"order": 14,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 5,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
 				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetSchemaById_Java",
+		"order": 15,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 5,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetSchemaById_xcomp",
+		"order": 16,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvoUtils",
+				"order": 4,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWSchemaUtils",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowReturn",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetSubjects",
+		"order": 17,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "GetSubjects_Python",
+		"order": 18,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
 			},
 			{
 				"name": "lvRefLst",
@@ -268,8 +345,8 @@
 		]
 	},
 	{
-		"name": "GetTopics",
-		"order": 13,
+		"name": "GetSubjects_Java",
+		"order": 19,
 		"pvardefs": [
 
 		],
@@ -280,13 +357,6 @@
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvRefLst",
@@ -300,6 +370,136 @@
 				"order": 1,
 				"type": "kRow",
 				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetSubjects_xcomp",
+		"order": 20,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstSubjects",
+				"order": 5,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvoUtils",
+				"order": 4,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWSchemaUtils",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetTopics",
+		"order": 21,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "GetTopics_Python",
+		"order": 22,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRefLst",
+				"order": 6,
+				"type": "kItemref",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetTopics_Java",
+		"order": 23,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRefLst",
+				"order": 6,
+				"type": "kItemref",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "GetTopics_xcomp",
+		"order": 24,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstTopics",
+				"order": 5,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvoUtils",
+				"order": 4,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaUtils",
 				"sublen": 0
 			}
 		]

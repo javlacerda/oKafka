@@ -1,0 +1,54 @@
+Begin text block
+Text:{
+Text:"records":
+Text:[[{
+If not(isclear(ivcKey))
+	Text:"key":"[ivcKey]",
+End If
+Text:"value":"[ivcMessage]"
+If ivnPartition>=0
+	Text:,"partition":[ivnPartition]
+End If
+Text:}]
+Text:}
+End text block
+Get text block lvcData
+
+Do lvoHttp.$SetHost(ivcServer)
+Do lvoHttp.$SetUri(con("/topics/",ivcTopic))
+Do lvoHttp.$AddHeader('Content-Type','application/vnd.kafka.json.v2+json')
+Do lvoHttp.$SetContentFromString(lvcData)
+
+Do lvoHttp.$HttpPost() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponseContent
+If not(lvbOk)
+	Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+	Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro(),"//Error Code: ",lvRowResponse.error_code,"//Error Message: ",lvRowResponse.message)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method
+End If
+
+Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method
+End If
+
+Set reference lvRefOffsets to lvRowResponse.offsets.$ref
+If lvRefOffsets.$linecount<>1
+	Do $cwind.$showmessage(con("The quantity of offsets returned isn't valid. Expected 1, received ",lvRefOffsets.$linecount,"."))
+	Quit method kFalse
+End If
+
+Calculate lvRefOffsets.$line as 1
+Set reference lvRefRowOffset to lvRefOffsets.C1.$ref
+Calculate lvcMessage as con("Offset: ",lvRefRowOffset.offset,"//Partition: ",lvRefRowOffset.partition)
+If not(isclear(lvRefRowOffset.error_code))
+	Calculate lvcMessage as con(lvcMessage,"//Error_Code: ",lvRefRowOffset.error_code)
+End If
+If not(isclear(lvRefRowOffset.error_code))
+	Calculate lvcMessage as con(lvcMessage,"//Error: ",lvRefRowOffset.error_code)
+End If
+
+Do $cwind.$showmessage(lvcMessage,"Info")
+Quit method

@@ -1,0 +1,31 @@
+Do lvoHttp.$SetHost(ivcSchemaRegistryServer)
+Do lvoHttp.$SetUri(con("/subjects/",ivcSubjectGetSchemaFromSubject,"/versions/latest"))
+Do lvoHttp.$AddHeader("Accept","application/vnd.schemaregistry.v1+json,application/vnd.schemaregistry+json,application/json")
+
+Do lvoHttp.$HttpGet() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoHttp.$GetMsgErro(),"Error")
+	Quit method kFalse
+End If
+
+Do lvoHttp.$GetResponseContent() Returns lvcResponse
+Do OJSON.$jsontolistorrow(lvcResponse,lvcErrorMessage,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Do ivRowSchemaInfoFromSubject.$clear()
+Calculate ivRowSchemaInfoFromSubject.Id as lvRowResponse.id
+Calculate ivRowSchemaInfoFromSubject.Version as lvRowResponse.version
+Do lvRowResponse.$cols.$findname("schemaType") Returns lvRefCol
+If isclear(lvRefCol) ## Tal como indicado na documentação (https://docs.confluent.io/platform/current/schema-registry/develop/api.html)
+	Calculate ivRowSchemaInfoFromSubject.Type as "AVRO"
+Else
+	Calculate ivRowSchemaInfoFromSubject.Type as lvRowResponse.schemaType
+End If
+
+Do OJSON.$formatjson(lvRowResponse.schema) Returns ivRowSchemaInfoFromSubject.Schema
+
+Redraw (Refresh now) gbGetSchemaFromSubject
+Quit method kTrue

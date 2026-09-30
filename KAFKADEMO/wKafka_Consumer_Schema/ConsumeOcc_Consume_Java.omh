@@ -1,0 +1,32 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("Timeout",kInteger,k32bitint)
+Calculate lvRowParam.Timeout as ivnTimeout
+
+Do lvLstHeaders.$copydefinition(ivLstHeaders)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumerSchema","consume",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+Else
+	If ivbSuccess
+		If ivRowResult.HasMessage
+			Do ivLstMessagesOcc.$add()
+			Calculate ivLstMessagesOcc.$line as ivLstMessagesOcc.$linecount
+			Calculate ivLstMessagesOcc.Offset as ivRowResult.Offset
+			Calculate ivLstMessagesOcc.Partition as ivRowResult.Partition
+			Calculate ivLstMessagesOcc.Topic as ivRowResult.Topic
+			Calculate ivLstMessagesOcc.Key as ivRowResult.Key
+			Calculate ivLstMessagesOcc.Timestamp as ivRowResult.Timestamp
+			Calculate ivLstMessagesOcc.Message as ivRowResult.Value
+			
+			Do lvLstHeaders.$clear()
+			Do method FillLstHeaders (lvLstHeaders)
+			Calculate ivLstMessages.Headers as lvLstHeaders
+		Else
+			Do $cwind.$showmessage("No messages in the queue!","Info",kMsgIcon)
+		End If
+	End If
+End If
+
+Redraw (Refresh now) cgMessagesOcc
+Quit method

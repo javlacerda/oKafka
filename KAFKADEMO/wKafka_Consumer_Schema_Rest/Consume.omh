@@ -1,0 +1,35 @@
+Do method _CreateConsumerInstance (lvRowResponse) Returns lvbOk
+If not(lvbOk)
+	Quit method
+End If
+
+Do method _SubscribeTopic Returns lvbOk
+If not(lvbOk)
+	Do method _DeleteConsumerInstance
+	Quit method
+End If
+
+Do getticks() Returns lvnStartClick
+
+While kTrue
+	Do method _Consume (lvLstRecods) Returns lvbOk
+	If not(lvbOk)
+		Do method _DeleteConsumerInstance
+		Quit method
+	End If
+	
+	If lvLstRecods.$linecount>0
+		Do method _DecodeMessages (lvLstRecods)
+		Break to end of loop
+	End If
+	
+	Do getticks() Returns lvnActualClick
+	If ((lvnActualClick-lvnStartClick)/60)>(ivnTimeout*1000)
+		Break to end of loop
+	End If
+End While
+
+Do method _DeleteConsumerInstance
+
+Redraw (Refresh now) cgMessages
+Quit method

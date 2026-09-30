@@ -1,4 +1,7 @@
 If ivoPythonWorker.$validref()
 	Do ivoPythonWorker.$deleteref()
 End If
+If ivoJavaWorker.$validref()
+	Do ivoJavaWorker.$deleteref()
+End If
 Quit method

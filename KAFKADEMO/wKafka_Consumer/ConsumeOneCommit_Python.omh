@@ -1,0 +1,46 @@
+Do ivRowMessage.$clear()
+Do ivLstHeaders.$clear()
+Redraw (Refresh now) gbConsumer
+
+Do method CreateRowParam (lvRowParam)
+
+Do ivoKafkaPython.$callmethod("okafka","connect_consumer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+	Quit method
+End If
+If not(ivbSuccess)
+	Quit method
+End If
+
+Do lvRowParam.$define()
+Do ivoKafkaPython.$callmethod("okafka","consume",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+Else
+	If ivbSuccess
+		If ivRowResult.HasMessage
+			Do method FillRowMessage
+			Redraw (Refresh now) gbConsumer
+			
+			Do lvRowParamCommit.$define()
+			Do lvRowParamCommit.$cols.$add("Topic",kCharacter,kSimplechar)
+			Do lvRowParamCommit.$cols.$add("Offset",kInteger,k64bitint)
+			Do lvRowParamCommit.$cols.$add("Partition",kInteger,k32bitint)
+			Do lvRowParamCommit.$assigncols(ivcTopic,ivRowResult.Offset,ivRowResult.Partition)
+			
+			Do ivoKafkaPython.$callmethod("okafka","commit",lvRowParamCommit) Returns lvbOk
+			If not(lvbOk)
+				Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+			End If
+		Else
+			Do $cwind.$showmessage("No messages!")
+		End If
+	End If
+End If
+
+Do ivoKafkaPython.$callmethod("okafka","close_consumer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+End If
+Quit method

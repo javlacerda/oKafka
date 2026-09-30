@@ -2,20 +2,22 @@
 	"classtype": "kWindow",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 30,
+	"internalversion": 70,
+	"superclass": "wBase",
 	"designtaskname": "Startup_Task",
-	"nextident": 1128,
+	"nextident": 1154,
 	"lastgroupident": 0,
 	"cvardefs": [
 
 	],
 	"ivardefs": [
 		{
-			"name": "ivbSuccess",
-			"order": 2,
+			"name": "ivbInTransaction",
+			"order": 7,
 			"type": "kBoolean",
 			"subtype": 0,
-			"sublen": 0
+			"sublen": 0,
+			"initval": "kFalse"
 		},
 		{
 			"name": "ivcSchemaRegistryUrl",
@@ -60,15 +62,16 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivLstLogs",
-			"order": 15,
-			"type": "kList",
-			"subtype": "",
-			"sublen": 0
-		},
-		{
 			"name": "ivnPartition",
 			"order": 17,
+			"type": "kInteger",
+			"subtype": "k32bitint",
+			"sublen": 0,
+			"initval": "-1"
+		},
+		{
+			"name": "ivnPartitionTransaction",
+			"order": 6,
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
@@ -88,7 +91,7 @@
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
-			"initval": "60"
+			"initval": "10"
 		},
 		{
 			"name": "ivoData",
@@ -98,10 +101,10 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivoKafka",
-			"order": 6,
-			"type": "kObjectref",
-			"subtype": "oPython_Worker",
+			"name": "ivoProducer",
+			"order": 8,
+			"type": "kObject",
+			"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroProducer",
 			"sublen": 0
 		},
 		{
@@ -112,8 +115,8 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivRowResult",
-			"order": 3,
+			"name": "ivRowRecordTransaction",
+			"order": 9,
 			"type": "kRow",
 			"subtype": "",
 			"sublen": 0
@@ -162,14 +165,14 @@
 		"issubwindow": false,
 		"issupercomponent": false,
 		"keepclicks": true,
-		"left": 69,
+		"left": 187,
 		"menuedge": "kBorderNone",
 		"menunames": "",
 		"minheight": 0,
 		"minimizebox": true,
 		"minimizeiconid": 2006,
 		"minwidth": 0,
-		"moddate": "2026-04-23 22:28:10",
+		"moddate": "2026-09-21 22:05:06",
 		"modelessdata": true,
 		"movebehind": true,
 		"osdropflags": "kOSDROPnone",
@@ -189,7 +192,7 @@
 		"toolbarnames": "",
 		"toolbaroptions": "kTBOptionNone",
 		"toolbarpos": "kDockingAreaNone",
-		"top": 56,
+		"top": 58,
 		"userinfo": "",
 		"usesheets": false,
 		"vcsrevision": 0,

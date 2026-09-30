@@ -1,0 +1,8 @@
+# If ivoKafkaJava.$validref()
+# Do ivoKafkaJava.$deleteref()
+# End If
+
+# If ivoKafkaPython.$validref()
+# Do ivoKafkaPython.$deleteref()
+# End If
+Quit method

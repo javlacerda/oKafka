@@ -3,7 +3,15 @@ Calculate ivRowMessage.Partition as ivRowResult.Partition
 Calculate ivRowMessage.Topic as ivRowResult.Topic
 Calculate ivRowMessage.Key as ivRowResult.Key
 Calculate ivRowMessage.Timestamp as ivRowResult.Timestamp
-Calculate ivRowMessage.Message as ivRowResult.Value
+If ivnType=ucKafka.PYTHON_OW|ivnType=ucKafka.JAVA_OW
+	Calculate ivRowMessage.Message as ivRowResult.Value
+Else
+	Calculate ivRowMessage.Message as OJSON.$jsontolistorrow(ivRowResult.Message,lvcErrorMessage,kTrue)
+	If isnull(ivRowMessage.Message)
+		Do $cwind.$showmessage(lvcErrorMessage,"Error")
+		Quit method
+	End If
+End If
 
 Do method FillLstHeaders (ivLstHeaders)
 Quit method

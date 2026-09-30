@@ -1,0 +1,40 @@
+Calculate lvnTimeIni as #CT
+Do method DefineRowParam (lvRowParam)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducer","connect",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method
+End If
+If not(ivbSuccess)
+	Quit method
+End If
+
+For lvnLoop from 1 to ivnQuantity step 1
+	Calculate lvRowParam.Key as con(ivcKey,"-",lvnLoop)
+	Calculate lvRowParam.Message as con(ivcMessage,"-",lvnLoop)
+	
+	Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducer","produce",lvRowParam) Returns lvbOk
+	If not(lvbOk)
+		Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+		Break to end of loop
+	End If
+	If not(ivbSuccess)
+		Break to end of loop
+	End If
+End For
+
+Do lvRowParam.$define()
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducer","close",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method
+End If
+
+If ivbSuccess
+	Calculate lvnDuration as (#CT-lvnTimeIni)/60
+	Do $cwind.$showmessage(con("Success!//",lvnLoop-1," messages created//Duration: ",lvnDuration," seconds"),"Info",kMsgIcon)
+End If
+
+Quit method

@@ -1,0 +1,32 @@
+Begin text block
+Text:{
+Text:"offsets": [[
+Text:{
+Text:"topic": "[ivLstMessages.Topic]",
+Text:"partition": [ivLstMessages.Partition],
+Text:"offset": [ivLstMessages.Offset]
+Text:}
+Text:]
+Text:}
+End text block
+Get text block lvcData
+
+Do lvoHttp.$SetHost(ivcServer)
+Do lvoHttp.$SetUri(con("/consumers/",ivcGroupId,"/instances/",ivcInstanceId,"/offsets"))
+Do lvoHttp.$AddHeader('Content-Type','application/vnd.kafka.json.v2+json')
+Do lvoHttp.$SetContentFromString(lvcData)
+
+Do lvoHttp.$HttpPost() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponseContent
+
+If not(lvbOk)
+	If not(isclear(lvcResponseContent))
+		Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+		Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro(),"//Error Code: ",lvRowResponse.error_code,"//Error Message: ",lvRowResponse.message)
+	Else
+		Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro())
+	End If
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+Quit method kTrue

@@ -1,57 +1,7 @@
-Do ivLstMessages.$clear()
-Redraw cgMessages
-
-Do method CreateRowParam (lvRowParam)
-
-Do lvLstHeaders.$copydefinition(ivLstHeaders)
-
-Do ivoKafka.$callmethod("okafka","connect_consumer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-If not(lvbOk)
-	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-	Quit method
+If ivnType=ucKafka.PYTHON_OW
+	Do method ConsumeMultiple_Python
+Else If ivnType=ucKafka.JAVA_OW
+	Do method ConsumeMultiple_Java
+Else
+	Do method ConsumeMultiple_xcomp
 End If
-If not(ivbSuccess)
-	Quit method
-End If
-
-Do lvRowParam.$define()
-
-For lvnLoop from 1 to ivnQuantity step 1
-	Do ivoKafka.$callmethod("okafka","consume",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-	If not(lvbOk)
-		Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-	Else
-		If ivbSuccess
-			If ivRowResult.HasMessage
-				Do ivLstMessages.$add()
-				Calculate ivLstMessages.$line as ivLstMessages.$linecount
-				Calculate ivLstMessages.Offset as ivRowResult.Offset
-				Calculate ivLstMessages.Partition as ivRowResult.Partition
-				Calculate ivLstMessages.Topic as ivRowResult.Topic
-				Calculate ivLstMessages.Key as ivRowResult.Key
-				Calculate ivLstMessages.Timestamp as ivRowResult.Timestamp
-				Calculate ivLstMessages.Message as ivRowResult.Value
-				
-				Do lvLstHeaders.$clear()
-				Do method FillLstHeaders (lvLstHeaders)
-				Calculate ivLstMessages.Headers as lvLstHeaders
-			Else
-				Do $cwind.$showmessage("No messages in the queue!//Do you want to continue?","Info",kMsgNoYes) Returns lvbOk
-				If not(lvbOk)
-					Break to end of loop
-				End If
-			End If
-		Else
-			Break to end of loop
-		End If
-	End If
-End For
-
-Redraw (Refresh now) cgMessages
-
-Do ivoKafka.$callmethod("okafka","close_consumer",lvRowParam,kTrue,lvcErrorText) Returns lvbOk
-If not(lvbOk)
-	Do $cwind.$showmessage(con("Python Worker Error: ",lvcErrorText))
-	Quit method
-End If
-Quit method

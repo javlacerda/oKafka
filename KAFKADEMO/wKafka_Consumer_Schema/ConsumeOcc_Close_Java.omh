@@ -1,0 +1,12 @@
+Do lvRowParam.$define()
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumerSchema","close",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method
+End If
+If ivbSuccess
+	Calculate ivbConsumerOpen as kFalse
+	Do method DefBtnsConsumeOcc
+End If
+Quit method

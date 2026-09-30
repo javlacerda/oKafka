@@ -1,0 +1,5 @@
+Do lvoData.$GetServerRest(ivcServer)
+Do lvoData.$GetTopic_Schema(ivcTopic)
+Do lvoData.$GetRowSchema(ivRowRecord)
+Do lvoData.$GetSchemaRegistryServer(ivcSchemaRegistryServer)
+Quit method

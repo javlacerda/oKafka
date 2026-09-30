@@ -1,0 +1,61 @@
+If ivnSchemaId=0&isclear(ivcSchemaStr)
+	Do method GetSchema Returns lvbOk
+	If not(lvbOk)
+		Quit method
+	End If
+End If
+
+Do fmtdatetime("y-M-DTH:N:S") Returns lvcDateTimeFmt
+Do OJSON.$listorrowtojson(ivRowRecord,kUniTypeCharacter,lvcErrorMessage) Returns lvcRecordJson
+Do fmtdatetime(lvcDateTimeFmt)
+
+Do lvoHttp.$SetHost(ivcServer)
+Do lvoHttp.$SetUri(con("/topics/",ivcTopic))
+Do lvoHttp.$AddHeader('Content-Type','application/vnd.kafka.avro.v2+json')
+
+Calculate lvnTimeIni as getticks()
+
+For lvnLoop from 1 to ivnQuantity step 1
+	Begin text block
+	Text:{
+	Text:"key_schema":"\"string\"",
+	Text:"value_schema_id":[ivnSchemaId],
+	Text:"records":
+	Text:[[{
+	Text:"key":"[ivRowRecord.id]-[lvnLoop]",
+	Text:"value":[lvcRecordJson]
+	If ivnPartition>=0
+		Text:,"partition":[ivnPartition]
+	End If
+	Text:}]
+	Text:}
+	End text block
+	Get text block lvcJson
+	
+	Do lvoHttp.$SetContentFromString(lvcJson)
+	
+	Do lvoHttp.$HttpPost() Returns lvbOk
+	Do lvoHttp.$GetResponseContent() Returns lvcResponseContent
+	If not(lvbOk)
+		Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+		Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro(),"//Error Code: ",lvRowResponse.error_code,"//Error Message: ",lvRowResponse.message)
+		Do $ctask.$showmessage(lvcErrorMessage)
+		Quit method
+	End If
+	
+	Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+	If isnull(lvRowResponse)
+		Do $ctask.$showmessage(lvcErrorMessage)
+		Quit method
+	End If
+	
+	Set reference lvRefOffsets to lvRowResponse.offsets.$ref
+	If lvRefOffsets.$linecount<>1
+		Do $cwind.$showmessage(con("The quantity of offsets returned isn't valid. Expected 1, received ",lvRefOffsets.$linecount,"."))
+		Quit method
+	End If
+End For
+
+Calculate lvnDuration as (getticks()-lvnTimeIni)/60
+Do $cwind.$showmessage(con("Success!//",ivnQuantity," messages created//Duration: ",lvnDuration," seconds"),"Info",kMsgIcon)
+Quit method

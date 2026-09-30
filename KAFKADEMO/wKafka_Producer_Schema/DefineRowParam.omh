@@ -4,9 +4,21 @@ Do pRefRowParam.$cols.$add("Topic",kCharacter,kSimplechar)
 Do pRefRowParam.$cols.$add("Partition",kInteger,k32bitint)
 Do pRefRowParam.$cols.$add("Key",kCharacter,kSimplechar)
 Do pRefRowParam.$cols.$add("Message",kRow)
+Do pRefRowParam.$cols.$add("Timeout",kInteger,k32bitint)
 Do pRefRowParam.$cols.$add("Headers",kList)
 Do pRefRowParam.$cols.$add("Config",kList)
-# Do pRefRowParam.$cols.$add("SchemaId",kInteger,k32bitint)
 Do pRefRowParam.$cols.$add("Schema",kCharacter,kSimplechar)
 Do pRefRowParam.$cols.$add("SchemaRegistryUrl",kCharacter,kSimplechar)
+
+Calculate pRefRowParam.Server as ivcServer
+Calculate pRefRowParam.Topic as ivcTopic
+Calculate pRefRowParam.Key as ivRowRecord.id
+Calculate pRefRowParam.Message as ivRowRecord
+Calculate pRefRowParam.SchemaRegistryUrl as ivcSchemaRegistryUrl
+Calculate pRefRowParam.Timeout as ivnTimeout
+Calculate pRefRowParam.Partition as ivnPartition
+Calculate pRefRowParam.Config as ivLstConfig
+Calculate pRefRowParam.Headers as ivLstHeaders
+
+Calculate pRefRowParam.Schema as ivcSchemaStr
 Quit method

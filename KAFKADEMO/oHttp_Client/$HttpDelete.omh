@@ -1,0 +1,18 @@
+Do method InitVars
+
+Do method BuildFullUri
+Do $cinst.$init(ivcFullUri,kOW3httpMethodDelete,ivLstHeaders,ivbinContent) Returns lvbOk
+If not(lvbOk)
+	Calculate ivnErro as $cinst.$errorcode
+	Calculate ivcMsgErro as $cinst.$errortext
+	Quit method kFalse
+End If
+
+Do $cinst.$run() Returns lvbOk
+If not(lvbOk)
+	Calculate ivnErro as $cinst.$errorcode
+	Calculate ivcMsgErro as $cinst.$errortext
+	Quit method kFalse
+End If
+
+Quit method ivnErro=0

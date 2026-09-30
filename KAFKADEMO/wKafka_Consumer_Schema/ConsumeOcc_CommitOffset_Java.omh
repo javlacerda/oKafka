@@ -1,0 +1,12 @@
+Do lvRowParamCommit.$define()
+Do lvRowParamCommit.$cols.$add("Topic",kCharacter,kSimplechar)
+Do lvRowParamCommit.$cols.$add("Offset",kInteger,k64bitint)
+Do lvRowParamCommit.$cols.$add("Partition",kInteger,k32bitint)
+Do lvRowParamCommit.$assigncols(ivcTopic,pnOffset,pnPartition)
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaConsumerSchema","commit",lvRowParamCommit) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+Quit method ivRowResult.Success

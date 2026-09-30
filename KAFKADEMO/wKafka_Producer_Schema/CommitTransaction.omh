@@ -1,0 +1,14 @@
+If ivnType=ucKafka.PYTHON_OW
+	Do method CommitTransaction_Python Returns lvbOk
+Else If ivnType=ucKafka.JAVA_OW
+	Do method CommitTransaction_Java Returns lvbOk
+Else
+	Do method CommitTransaction_xcomp Returns lvbOk
+End If
+
+If lvbOk
+	Calculate $cwind.$objs.tpPrinc.$objs.gbInfoTransaction.$bobjs.txtInfoTransaction.$text as "Transaction Committed"
+	Calculate ivbInTransaction as kFalse
+	Do method DefTransactionFields
+End If
+Quit method lvbOk

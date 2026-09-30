@@ -1,0 +1,4 @@
+Do lvoJsonWriter.$AddList(pLstValue)
+Do lvoJsonWriter.$GetJson(lvcJson)
+Do $cinst.$SetContentFromString(lvcJson)
+Quit method kTrue

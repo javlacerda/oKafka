@@ -1,0 +1,4 @@
+Do lvoJsonWriter.$AddRow(pRowValue)
+Do lvoJsonWriter.$GetJson(lvcJson)
+Do $cinst.$SetContentFromString(lvcJson)
+Quit method kTrue

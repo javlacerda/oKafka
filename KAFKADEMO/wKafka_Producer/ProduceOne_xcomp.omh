@@ -1,0 +1,23 @@
+Do lvoProducer.$setbroker(ivcServer)
+Do lvoProducer.$settopic(ivcTopic)
+Do lvoProducer.$settimeout(ivnTimeout)
+
+For lvnLoop from 1 to ivLstConfig.$linecount step 1
+	Do lvoProducer.$setproperty(ivLstConfig.[lvnLoop].C1,ivLstConfig.[lvnLoop].C2)
+End For
+
+Do lvoProducer.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoProducer.$geterrormessage(),"Error")
+	Quit method
+End If
+
+Do lvoProducer.$produce(ivcMessage,ivcKey,ivnPartition,ivLstHeaders,lvRowReturn) Returns lvbOk
+If lvbOk
+	Do $cwind.$showmessage(con("Success!// //Offset: ",lvRowReturn.Offset,"//Partition: ",lvRowReturn.Partition,"//Timestamp: ",omnistoiso8601(lvRowReturn.Timestamp,kTrue)),"Info",kMsgIcon)
+Else
+	Do $cwind.$showmessage(lvoProducer.$geterrormessage(),"Error")
+End If
+
+Do lvoProducer.$disconnect()
+Quit method

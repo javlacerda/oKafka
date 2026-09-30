@@ -1,0 +1,8 @@
+If ivnType=ucKafka.PYTHON_OW
+	Do method ProduceTransaction_Python Returns lvbOk
+Else If ivnType=ucKafka.JAVA_OW
+	Do method ProduceTransaction_Java Returns lvbOk
+Else
+	Do method ProduceTransaction_xcomp Returns lvbOk
+End If
+Quit method lvbOk

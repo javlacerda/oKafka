@@ -1,6 +1,6 @@
 {
 	"ident": 1091,
-	"order": 36,
+	"order": 35,
 	"objtype": "kHeadedListBox",
 	"properties": {
 		"active": true,
@@ -73,7 +73,7 @@
 		"mouseevents": false,
 		"multipleselect": false,
 		"nodropcursor": 0,
-		"objlink": 262145,
+		"objlink": 327681,
 		"osdropflags": "kOSDROPnone",
 		"resizecolumn": 0,
 		"rmouseevents": false,

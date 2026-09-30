@@ -1,0 +1,7 @@
+Do ivoProducer.$committransaction() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoProducer.$geterrormessage(),"Error")
+End If
+
+Do ivoProducer.$disconnect()
+Quit method kTrue

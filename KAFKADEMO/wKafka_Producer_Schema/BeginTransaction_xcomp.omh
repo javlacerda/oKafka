@@ -1,0 +1,25 @@
+Do ivoProducer.$setbroker(ivcServer)
+Do ivoProducer.$settopic(ivcTopic)
+Do ivoProducer.$settimeout(ivnTimeout)
+Do ivoProducer.$setschemaregistryurl(ivcSchemaRegistryUrl)
+Do ivoProducer.$setschema(ivcSchemaStr)
+
+For lvnLoop from 1 to ivLstConfig.$linecount step 1
+	Do ivoProducer.$setproperty(ivLstConfig.[lvnLoop].C1,ivLstConfig.[lvnLoop].C2)
+End For
+
+Do ivoProducer.$settransactionalid(con("tr_",#CT))
+
+Do ivoProducer.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(ivoProducer.$geterrormessage(),"Error")
+	Quit method kFalse
+End If
+
+Do ivoProducer.$begintransaction() Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(ivoProducer.$geterrormessage(),"Error")
+	Do ivoProducer.$disconnect()
+	Quit method kFalse
+End If
+Quit method kTrue

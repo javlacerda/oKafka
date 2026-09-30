@@ -1,0 +1,6 @@
+If not(ivoJavaWorker.$validref())
+	Do $clib.$objects.oJava_Worker.$newref() Returns ivoJavaWorker
+	Do ivoJavaWorker.$init()
+	Do ivoJavaWorker.$start()
+End If
+Quit method ivoJavaWorker

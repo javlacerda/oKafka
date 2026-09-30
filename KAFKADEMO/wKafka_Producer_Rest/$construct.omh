@@ -1,0 +1,5 @@
+Do lvoData.$GetServerRest(ivcServer)
+Do lvoData.$GetTopic(ivcTopic)
+
+Calculate ivcMessage as con("Simple text message from Omnis via API REST: ",jst(#D,"D:D/M/y H:N:S"))
+Quit method

@@ -1,0 +1,17 @@
+Do lvRowParam.$define()
+
+Do ivoKafkaPython.$callmethod("okafka","abort_transaction",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+	Quit method kFalse
+End If
+If not(ivbSuccess)
+	Quit method kFalse
+End If
+
+Do ivoKafkaPython.$callmethod("okafka","close_producer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+	Quit method kFalse
+End If
+Quit method kTrue

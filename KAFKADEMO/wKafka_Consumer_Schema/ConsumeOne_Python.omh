@@ -1,0 +1,35 @@
+Do ivRowMessage.$clear()
+Do ivLstHeaders.$clear()
+Redraw (Refresh now) gbConsumer_One
+
+Do method CreateRowParam (lvRowParam)
+
+Do ivoKafkaPython.$callmethod("okafka","connect_consumer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+	Quit method
+End If
+If not(ivbSuccess)
+	Quit method
+End If
+
+Do ivoKafkaPython.$callmethod("okafka","consume",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+Else
+	If ivbSuccess
+		If ivRowResult.HasMessage
+			Do method FillRowMessage
+			Redraw (Refresh now) gbConsumer_One
+		Else
+			Do $cwind.$showmessage("No messages!")
+		End If
+	End If
+End If
+
+Do lvRowParam.$define()
+Do ivoKafkaPython.$callmethod("okafka","close_consumer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+End If
+Quit method

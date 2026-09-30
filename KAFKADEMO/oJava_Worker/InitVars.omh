@@ -1,0 +1,4 @@
+Do ivRowResult.$define()
+Calculate ivbSuccess as kFalse
+Calculate ivcErrorMessage as ""
+Quit method

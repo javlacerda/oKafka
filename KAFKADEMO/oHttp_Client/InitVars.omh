@@ -1,0 +1,7 @@
+Calculate ivnErro as 0
+Calculate ivcMsgErro as ""
+If not(ivbForceFullUri)
+	Calculate ivcFullUri as ""
+End If
+Do ivRowResponse.$define()
+Quit method kTrue

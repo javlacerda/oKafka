@@ -1,0 +1,22 @@
+If ivLstMessages.$linecount=0
+	Do $cwind.$showmessage("No messages to commit","Error")
+	Quit method kFalse
+End If
+
+Do $cwind.$showmessage(con("Commit message with offset ",ivLstMessages.Offset,"?"),"Confirmation",kMsgNoYes) Returns lvbOk
+If not(lvbOk)
+	Quit method kFalse
+End If
+
+Do method _CreateConsumerInstance (lvRowResponse) Returns lvbOk
+If not(lvbOk)
+	Quit method
+End If
+
+Do method _Commit Returns lvbOk
+Do method _DeleteConsumerInstance
+
+If lvbOk
+	Do $cwind.$showmessage(con("Offset ",ivLstMessages.Offset," commited!"),"Info")
+End If
+Quit method

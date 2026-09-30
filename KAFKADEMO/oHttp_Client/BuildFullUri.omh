@@ -1,0 +1,28 @@
+If ivbForceFullUri
+	Quit method kTrue
+End If
+
+If ivLstQueryParams.$linecount>0
+	For ivLstQueryParams.$line from 1 to ivLstQueryParams.$linecount step 1
+		If not(isclear(ivLstQueryParams.name))
+			Calculate lvcQuery as con(lvcQuery,pick(len(lvcQuery)>0,"","&"),ivLstQueryParams.name,"=",ivLstQueryParams.value)
+		End If
+	End For
+End If
+
+Begin text block
+If ivbSecure
+	Text:https://[ivcHost]
+Else
+	Text:http://[ivcHost]
+End If
+If ivnPorta>0
+	Text::[ivnPorta]
+End If
+Text:[ivcUri]
+If len(lvcQuery)>0
+	Text:?[lvcQuery]
+End If
+End text block
+Get text block ivcFullUri
+Quit method ivcFullUri

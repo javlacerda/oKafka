@@ -1,0 +1,35 @@
+Calculate lvnTimeIni as #CT
+
+Do lvoProducer.$setbroker(ivcServer)
+Do lvoProducer.$settopic(ivcTopic)
+Do lvoProducer.$setschemaregistryurl(ivcSchemaRegistryUrl)
+Do lvoProducer.$setschema(ivcSchemaStr)
+Do lvoProducer.$settimeout(ivnTimeout)
+
+For lvnLoop from 1 to ivLstConfig.$linecount step 1
+	Do lvoProducer.$setproperty(ivLstConfig.[lvnLoop].Item,ivLstConfig.[lvnLoop].Value)
+End For
+
+Do lvoProducer.$connect() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoProducer.$geterrormessage(),"Error")
+	Quit method
+End If
+
+Do OJSON.$listorrowtojson(ivRowRecord,kUniTypeCharacter) Returns lvcJson
+
+For lvnLoop from 1 to ivnQuantity step 1
+	Do lvoProducer.$produce(lvcJson,ivRowRecord.Id,ivnPartition,ivLstHeaders,lvRowReturn) Returns lvbOk
+	If not(lvbOk)
+		Do $cwind.$showmessage(lvoProducer.$geterrormessage(),"Error")
+		Break to end of loop
+	End If
+End For
+
+Do lvoProducer.$disconnect()
+
+If lvbOk
+	Calculate lvnDuration as (#CT-lvnTimeIni)/60
+	Do $cwind.$showmessage(con("Success!//",lvnLoop-1," messages created//Duration: ",lvnDuration," seconds"),"Info",kMsgIcon)
+End If
+Quit method

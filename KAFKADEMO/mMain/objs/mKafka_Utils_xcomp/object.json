@@ -1,0 +1,23 @@
+{
+	"ident": 1036,
+	"order": 23,
+	"properties": {
+		"cascade": "",
+		"checked": false,
+		"enabled": true,
+		"fontstyle": "kPlain",
+		"helpfile": 0,
+		"helptext": "",
+		"iconcolor": "kColorDefault",
+		"iconid": 0,
+		"macshortcutkey": "",
+		"text": {
+			"type": 0,
+			"calc": "Kafka Utils - xcomp"
+		},
+		"unixshortcutkey": "",
+		"userinfo": "",
+		"users": "12345678",
+		"winshortcutkey": ""
+	}
+}

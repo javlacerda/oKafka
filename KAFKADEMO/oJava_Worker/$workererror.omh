@@ -1,0 +1,8 @@
+Calculate ivcErrorMessage as con($class().$name,".",$cmethod().$name,"//Java Worker Critical Error. ",pError.errorCode,": ",pError.errorInfo)
+
+If isheadless()|sys(6)="U"
+	Send to trace log (Always log) [ivcErrorMessage]
+Else
+	Do $ctask.$showmessage(ivcErrorMessage,"Erro",kMsgIcon)
+End If
+Quit method

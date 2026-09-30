@@ -1,0 +1,4 @@
+Do ivoConsumer.$disconnect()
+Calculate ivbConsumerOpen as kFalse
+Do method DefBtnsConsumeOcc
+Quit method

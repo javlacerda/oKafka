@@ -1,0 +1,7 @@
+Do method InitVars
+
+Do $inherited.$callmethod(pcModule,pcMethod,pRowParam,kTrue,lvcErrorText) Returns lvbOk
+If not(lvbOk)
+	Calculate ivcErrorMessage as lvcErrorText
+End If
+Quit method lvbOk

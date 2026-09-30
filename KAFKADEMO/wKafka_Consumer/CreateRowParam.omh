@@ -6,7 +6,9 @@ If ivbForcePartition
 End If
 Do pRefRowParam.$cols.$add("ClientId",kCharacter,kSimplechar)
 Do pRefRowParam.$cols.$add("GroupId",kCharacter,kSimplechar)
+Do pRefRowParam.$cols.$add("Timeout",kInteger,k32bitint)
 Do pRefRowParam.$cols.$add("Config",kList)
+
 Calculate pRefRowParam.Server as ivcServer
 Calculate pRefRowParam.Topic as ivcTopic
 If ivbForcePartition
@@ -14,5 +16,6 @@ If ivbForcePartition
 End If
 Calculate pRefRowParam.ClientId as ivcClientId
 Calculate pRefRowParam.GroupId as ivcGroupId
+Calculate pRefRowParam.Timeout as ivnTimeout
 Calculate pRefRowParam.Config as ivLstConfig
 Quit method

@@ -1,0 +1,15 @@
+Do ivLstMessagesOcc.$clear()
+Redraw cgMessagesOcc
+
+Do method CreateRowParam (lvRowParam)
+
+Do ivoKafkaPython.$callmethod("okafka","connect_consumer",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Python Worker Error: ",ivoKafkaPython.$GetErrorMessage()))
+	Quit method
+End If
+If ivbSuccess
+	Calculate ivbConsumerOpen as kTrue
+	Do method DefBtnsConsumeOcc
+End If
+Quit method

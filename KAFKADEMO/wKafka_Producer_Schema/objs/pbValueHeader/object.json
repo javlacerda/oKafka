@@ -1,6 +1,6 @@
 {
 	"ident": 1109,
-	"order": 31,
+	"order": 30,
 	"objtype": "kPushbutton",
 	"properties": {
 		"actedata": true,
@@ -48,7 +48,7 @@
 		"mouseevents": false,
 		"nodropcursor": 0,
 		"nogray": true,
-		"objlink": 33685530,
+		"objlink": 33685529,
 		"osdropflags": "kOSDROPnone",
 		"rmouseevents": false,
 		"sidepanel": false,

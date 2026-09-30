@@ -91,6 +91,14 @@
 			{
 				"tabcaption": {
 					"type": 0,
+					"calc": "   Producer - Transactions   "
+				},
+				"tabiconid": 0,
+				"tabtooltip": ""
+			},
+			{
+				"tabcaption": {
+					"type": 0,
 					"calc": "   Logs   "
 				},
 				"tabiconid": 0,

@@ -4,7 +4,16 @@ Do pRefLstConfig.$cols.$add("Value",kCharacter,kSimplechar)
 
 # Do pRefLstConfig.$add("security.protocol","SASL_PLAINTEXT")
 # Do pRefLstConfig.$add("sasl.mechanism","SCRAM-SHA-256")
-# Do pRefLstConfig.$add("sasl.username","")
-# Do pRefLstConfig.$add("sasl.password","")
-# Calculate pRefLstConfig.$line as 1
+# Do pRefLstConfig.$add("sasl.username","THE_USER")
+# Do pRefLstConfig.$add("sasl.password","THE_PASSWORD")
+
+If pnOperation=ucKafka.PRODUCER
+	Do pRefLstConfig.$add("linger.ms","0")
+Else If pnOperation=ucKafka.CONSUMER
+	Do pRefLstConfig.$add("enable.auto.commit","false")
+	Do pRefLstConfig.$add("auto.offset.reset","earliest")
+	Do pRefLstConfig.$add("isolation.level","read_committed")
+End If
+
+Calculate pRefLstConfig.$line as 1
 Quit method pRefLstConfig

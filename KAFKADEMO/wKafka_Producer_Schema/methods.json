@@ -3,6 +3,23 @@
 		"name": "$construct",
 		"order": 1,
 		"pvardefs": [
+			{
+				"name": "pnType",
+				"order": 1,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1
+			}
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ProduceOne",
+		"order": 2,
+		"pvardefs": [
 
 		],
 		"lvardefs": [
@@ -10,43 +27,18 @@
 		]
 	},
 	{
-		"name": "$destruct",
-		"order": 2,
-		"pvardefs": [
-
-		],
-		"lvardefs": [
-
-		],
-		"empty": true
-	},
-	{
-		"name": "RegisterSchema",
+		"name": "ProduceOne_Python",
 		"order": 3,
 		"pvardefs": [
-			{
-				"name": "pnRefSchemaId",
-				"order": 3,
-				"type": "kFieldreference",
-				"subtype": 0,
-				"sublen": 0,
-				"param": 1
-			}
+
 		],
 		"lvardefs": [
 			{
 				"name": "lvbOk",
-				"order": 5,
+				"order": 4,
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvRowParam",
@@ -58,7 +50,7 @@
 		]
 	},
 	{
-		"name": "ProduceOne",
+		"name": "ProduceOne_Java",
 		"order": 4,
 		"pvardefs": [
 
@@ -66,21 +58,58 @@
 		"lvardefs": [
 			{
 				"name": "lvbOk",
-				"order": 4,
+				"order": 3,
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 5,
+				"name": "lvRowParam",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceOne_xcomp",
+		"order": 5,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvcJson",
+				"order": 4,
 				"type": "kCharacter",
 				"subtype": "kSimplechar",
 				"sublen": 100000000
 			},
 			{
-				"name": "lvRowParam",
+				"name": "lvnLoop",
 				"order": 2,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvoProducer",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroProducer",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowReturn",
+				"order": 5,
 				"type": "kRow",
 				"subtype": "",
 				"sublen": 0
@@ -94,19 +123,22 @@
 
 		],
 		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ProduceMultiple_Python",
+		"order": 7,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
 			{
 				"name": "lvbOk",
 				"order": 4,
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvnDuration",
@@ -139,8 +171,110 @@
 		]
 	},
 	{
-		"name": "DefineRowParam",
+		"name": "ProduceMultiple_Java",
 		"order": 8,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvnDuration",
+				"order": 7,
+				"type": "kNumber",
+				"subtype": "k1dp",
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 3,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvnTimeIni",
+				"order": 6,
+				"type": "kInteger",
+				"subtype": "k64bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceMultiple_xcomp",
+		"order": 9,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvcJson",
+				"order": 4,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lvnDuration",
+				"order": 7,
+				"type": "kNumber",
+				"subtype": "k1dp",
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 2,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvnTimeIni",
+				"order": 6,
+				"type": "kInteger",
+				"subtype": "k64bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvoProducer",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroProducer",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowReturn",
+				"order": 5,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "DefineRowParam",
+		"order": 10,
 		"pvardefs": [
 			{
 				"name": "pRefRowParam",
@@ -153,66 +287,6 @@
 		],
 		"lvardefs": [
 
-		]
-	},
-	{
-		"name": "$OnPythonError",
-		"order": 9,
-		"pvardefs": [
-			{
-				"name": "pError",
-				"order": 1,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
-		],
-		"lvardefs": [
-			{
-				"name": "lvcErrorMsg",
-				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			}
-		]
-	},
-	{
-		"name": "$OnPythonSuccess",
-		"order": 10,
-		"pvardefs": [
-			{
-				"name": "pResult",
-				"order": 3,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
-		],
-		"lvardefs": [
-			{
-				"name": "lvcFieldName",
-				"order": 4,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvcMsg",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvnLoop",
-				"order": 2,
-				"type": "kInteger",
-				"subtype": "k32bitint",
-				"sublen": 0
-			}
 		]
 	},
 	{
@@ -266,33 +340,360 @@
 		]
 	},
 	{
-		"name": "SetTimeout",
-		"order": 16,
+		"name": "BeginTransaction",
+		"order": 17,
 		"pvardefs": [
 
 		],
 		"lvardefs": [
 			{
 				"name": "lvbOk",
-				"order": 3,
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "BeginTransaction_Python",
+		"order": 18,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
+				"name": "lvRowParam",
 				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "BeginTransaction_Java",
+		"order": 19,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "BeginTransaction_xcomp",
+		"order": 20,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 3,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "RollbackTransaction",
+		"order": 21,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "RollbackTransaction_Python",
+		"order": 22,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "RollbackTransaction_Java",
+		"order": 23,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "RollbackTransaction_xcomp",
+		"order": 24,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvoProducer",
+				"order": 2,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaProducer",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "CommitTransaction",
+		"order": 25,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "CommitTransaction_Python",
+		"order": 26,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "CommitTransaction_Java",
+		"order": 27,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "CommitTransaction_xcomp",
+		"order": 28,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvoProducer",
+				"order": 2,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaProducer",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceTransaction",
+		"order": 29,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 1,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceTransaction_Python",
+		"order": 30,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceTransaction_Java",
+		"order": 31,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ProduceTransaction_xcomp",
+		"order": 32,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvcJson",
+				"order": 1,
 				"type": "kCharacter",
 				"subtype": "kSimplechar",
 				"sublen": 100000000
 			},
 			{
-				"name": "lvRowParam",
-				"order": 1,
+				"name": "lvRowReturn",
+				"order": 3,
 				"type": "kRow",
 				"subtype": "",
 				"sublen": 0
 			}
+		]
+	},
+	{
+		"name": "DefTransactionFields",
+		"order": 33,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
 		]
 	}
 ]

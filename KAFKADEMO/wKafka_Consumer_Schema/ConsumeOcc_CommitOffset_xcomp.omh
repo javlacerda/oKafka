@@ -1,0 +1,5 @@
+Do ivoConsumer.$commit(ivcTopic,pnPartition,pnOffset) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(ivoConsumer.$geterrormessage(),"Error")
+End If
+Quit method lvbOk

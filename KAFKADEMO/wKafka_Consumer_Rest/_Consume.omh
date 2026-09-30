@@ -1,0 +1,24 @@
+Do lvoHttp.$SetHost(ivcServer)
+# Do lvoHttp.$SetUri(con("/consumers/",ivcGroupId,"/instances/",ivcInstanceId,"/records?timeout=",(ivnTimeout*1000),"&max_bytes=",ivnMaxBytes))
+Do lvoHttp.$SetUri(con("/consumers/",ivcGroupId,"/instances/",ivcInstanceId,"/records?max_bytes=",ivnMaxBytes))
+# Do lvoHttp.$SetUri(con("/consumers/",ivcGroupId,"/instances/",ivcInstanceId,"/records"))
+
+Do lvoHttp.$AddHeader('Accept','application/vnd.kafka.binary.v2+json')
+
+Do lvoHttp.$HttpGet() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponseContent
+If not(lvbOk)
+	Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvLstResponse
+	Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro(),"//Error Code: ",lvLstResponse.error_code,"//Error Message: ",lvLstResponse.message)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvLstResponse
+If isnull(lvLstResponse)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Calculate pRefLstRecords as lvLstResponse
+Quit method kTrue

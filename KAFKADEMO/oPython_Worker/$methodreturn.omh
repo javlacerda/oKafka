@@ -1,16 +1,9 @@
+Calculate ivbSuccess as kTrue
+Calculate ivRowResult as pResults
+
 If not(isclear(ivRefCallingInstance))
 	If ivRefCallingInstance.$OnPythonSuccess.$cando
 		Do ivRefCallingInstance.$OnPythonSuccess(pResults)
-		Calculate lvbShow as kFalse
 	End If
-End If
-
-If lvbShow
-	For lvnLoop from 1 to pResults.$colcount step 1
-		Calculate lvcFieldName as pResults.[lvnLoop].$name
-		Calculate lvcMsg as con(lvcMsg,lvcFieldName," (",pResults.$cols.[lvnLoop].$coltype,"): ",pResults.[lvcFieldName],"//")
-	End For
-	
-	Do $ctask.$showmessage(con("Success// //",lvcMsg))
 End If
 Quit method

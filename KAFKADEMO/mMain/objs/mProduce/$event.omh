@@ -1,2 +1,0 @@
-On evClick
-	Do $clib.$windows.wKafka_Producer.$open("*",kWindowCenter)

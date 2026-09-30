@@ -1,12 +1,23 @@
-Set reference lvRefRowHeaders to ivRowResult.Headers
-For lvnLoop from 1 to lvRefRowHeaders.$colcount step 1
-	Set reference lvRefLstItem to lvRefRowHeaders.C[lvnLoop]
-	If lvRefLstItem.$linecount>=2
-		Do pRefLstHeaders.$add(lvRefLstItem.1.C1,lvRefLstItem.2.C1)
-	Else If lvRefLstItem.$linecount=1
-		Do pRefLstHeaders.$add(lvRefLstItem.1.C1,"")
-	Else
-		Do pRefLstHeaders.$add("","")
-	End If
-End For
+Set reference lvRefHeaders to ivRowResult.Headers
+
+If ivnType=ucKafka.PYTHON_OW
+	For lvnLoop from 1 to lvRefHeaders.$colcount step 1
+		Set reference lvRefLstItem to lvRefHeaders.C[lvnLoop]
+		If lvRefLstItem.$linecount>=2
+			Do pRefLstHeaders.$add(lvRefLstItem.1.C1,lvRefLstItem.2.C1)
+		Else If lvRefLstItem.$linecount=1
+			Do pRefLstHeaders.$add(lvRefLstItem.1.C1,"")
+		Else
+			Do pRefLstHeaders.$add("","")
+		End If
+	End For
+Else If ivnType=ucKafka.JAVA_OW
+	For lvRefHeaders.$line from 1 to lvRefHeaders.$linecount step 1
+		Do pRefLstHeaders.$add(lvRefHeaders.C1.key,lvRefHeaders.C1.value)
+	End For
+Else
+	For lvRefHeaders.$line from 1 to lvRefHeaders.$linecount step 1
+		Do pRefLstHeaders.$add(lvRefHeaders.C1,lvRefHeaders.C2)
+	End For
+End If
 Quit method

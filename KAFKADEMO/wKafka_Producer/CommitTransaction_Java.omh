@@ -1,0 +1,17 @@
+Do lvRowParam.$define()
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducer","commitTransaction",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+If not(ivbSuccess)
+	Quit method kFalse
+End If
+
+Do ivoKafkaJava.$callmethod("com.omnis.kafka.OKafkaProducer","close",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(con("Java Worker Error: ",ivoKafkaJava.$GetErrorMessage()))
+	Quit method kFalse
+End If
+Quit method kTrue

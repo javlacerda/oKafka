@@ -1,0 +1,22 @@
+{
+	"classtype": "kUserConstants",
+	"omnisversion": "11.1",
+	"omnisbuild": 111037255,
+	"internalversion": 3,
+	"properties": {
+		"componentinfo": {
+
+		},
+		"componenttype": "kCompStoreHidden",
+		"createdate": "2026-06-23 22:04:36",
+		"desc": "",
+		"editor": "",
+		"editordata": "",
+		"external": false,
+		"moddate": "2026-06-24 19:34:40",
+		"showascheckedout": false,
+		"userinfo": "",
+		"vcsrevision": 0,
+		"version": ""
+	}
+}

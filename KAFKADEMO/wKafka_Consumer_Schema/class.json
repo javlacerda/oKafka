@@ -2,9 +2,10 @@
 	"classtype": "kWindow",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 13,
+	"internalversion": 73,
+	"superclass": "wBase",
 	"designtaskname": "Startup_Task",
-	"nextident": 1225,
+	"nextident": 1226,
 	"lastgroupident": 0,
 	"cvardefs": [
 
@@ -27,27 +28,18 @@
 			"initval": "kFalse"
 		},
 		{
-			"name": "ivbSuccess",
-			"order": 2,
-			"type": "kBoolean",
-			"subtype": 0,
-			"sublen": 0
-		},
-		{
 			"name": "ivcClientId",
 			"order": 4,
 			"type": "kCharacter",
 			"subtype": "kSimplechar",
-			"sublen": 100000000,
-			"initval": "\"omnis_client\""
+			"sublen": 100000000
 		},
 		{
 			"name": "ivcGroupId",
 			"order": 5,
 			"type": "kCharacter",
 			"subtype": "kSimplechar",
-			"sublen": 100000000,
-			"initval": "\"omnis_client_group\""
+			"sublen": 100000000
 		},
 		{
 			"name": "ivcSchemaRegistryUrl",
@@ -80,13 +72,6 @@
 		{
 			"name": "ivLstHeaders",
 			"order": 12,
-			"type": "kList",
-			"subtype": "",
-			"sublen": 0
-		},
-		{
-			"name": "ivLstLogs",
-			"order": 15,
 			"type": "kList",
 			"subtype": "",
 			"sublen": 0
@@ -135,7 +120,14 @@
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
-			"initval": "60"
+			"initval": "10"
+		},
+		{
+			"name": "ivoConsumer",
+			"order": 25,
+			"type": "kObject",
+			"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroConsumer",
+			"sublen": 0
 		},
 		{
 			"name": "ivoData",
@@ -145,22 +137,8 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivoKafka",
-			"order": 6,
-			"type": "kObjectref",
-			"subtype": "oPython_Worker",
-			"sublen": 0
-		},
-		{
 			"name": "ivRowMessage",
 			"order": 23,
-			"type": "kRow",
-			"subtype": "",
-			"sublen": 0
-		},
-		{
-			"name": "ivRowResult",
-			"order": 3,
 			"type": "kRow",
 			"subtype": "",
 			"sublen": 0
@@ -216,7 +194,7 @@
 		"minimizebox": true,
 		"minimizeiconid": 2006,
 		"minwidth": 0,
-		"moddate": "2026-04-23 22:28:15",
+		"moddate": "2026-09-30 09:32:04",
 		"modelessdata": true,
 		"movebehind": true,
 		"osdropflags": "kOSDROPnone",

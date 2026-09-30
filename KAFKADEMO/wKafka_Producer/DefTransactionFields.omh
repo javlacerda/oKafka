@@ -1,0 +1,12 @@
+Calculate $cwind.$objs.tpPrinc.$objs.pbBeginTransaction.$enabled as not(ivbInTransaction)
+Calculate $cwind.$objs.tpPrinc.$objs.pbBeginTransaction.$active as not(ivbInTransaction)
+
+Calculate $cwind.$objs.tpPrinc.$objs.pbCommitTransaction.$enabled as ivbInTransaction
+Calculate $cwind.$objs.tpPrinc.$objs.pbCommitTransaction.$active as ivbInTransaction
+
+Calculate $cwind.$objs.tpPrinc.$objs.pbRollbackTransaction.$enabled as ivbInTransaction
+Calculate $cwind.$objs.tpPrinc.$objs.pbRollbackTransaction.$active as ivbInTransaction
+
+Calculate $cwind.$objs.tpPrinc.$objs.pbProduceTransaction.$enabled as ivbInTransaction
+Calculate $cwind.$objs.tpPrinc.$objs.pbProduceTransaction.$active as ivbInTransaction
+Quit method

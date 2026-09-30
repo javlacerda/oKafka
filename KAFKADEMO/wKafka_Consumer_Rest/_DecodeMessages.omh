@@ -1,0 +1,18 @@
+Do ivLstMessages.$clear()
+
+For pRefLstRecords.$line from 1 to pRefLstRecords.$linecount step 1
+	Set reference lvRefRow to pRefLstRecords.C1.$ref
+	Do ivLstMessages.$add()
+	Calculate ivLstMessages.$line as ivLstMessages.$linecount
+	
+	Calculate ivLstMessages.Partition as lvRefRow.partition
+	Calculate ivLstMessages.Offset as lvRefRow.offset
+	Calculate ivLstMessages.Key as utf8tochar(binfrombase64(lvRefRow.key))
+	Calculate ivLstMessages.Message as utf8tochar(binfrombase64(lvRefRow.value))
+	Calculate ivLstMessages.Topic as lvRefRow.topic
+End For
+
+Calculate ivLstMessages.$line as pick(ivLstMessages.$linecount>0,0,1)
+
+Redraw (Refresh now) cgMessages
+Quit method

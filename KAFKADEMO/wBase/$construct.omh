@@ -1,0 +1,28 @@
+If ivnType=ucKafka.PYTHON_OW
+	Calculate $cwind.$title as con($cwind.$title," - PYTHON OBJECT WORKER")
+	
+	Do $clibstartuptask.$GetPythonWorker() Returns ivoKafkaPython
+	Do ivoKafkaPython.$SetCallingInstance($cinst().$ref)
+	
+	# Do $clib.$objects.oPython_Worker.$newref() Returns ivoKafkaPython
+	# Do ivoKafkaPython.$init()
+	# Do ivoKafkaPython.$start()
+	# Do ivoKafkaPython.$SetCallingInstance($cinst().$ref)
+Else If ivnType=ucKafka.JAVA_OW
+	Calculate $cwind.$title as con($cwind.$title," - JAVA OBJECT WORKER")
+	
+	Do $clibstartuptask.$GetJavaWorker() Returns ivoKafkaJava
+	Do ivoKafkaJava.$SetCallingInstance($cinst().$ref)
+	
+	# Do $clib.$objects.oJava_Worker.$newref() Returns ivoKafkaJava
+	# Do ivoKafkaJava.$init()
+	# Do ivoKafkaJava.$start()
+	# Do ivoKafkaJava.$SetCallingInstance($cinst().$ref)
+Else
+	Calculate $cwind.$title as con($cwind.$title," - XCOMP")
+End If
+
+Do ivLstLogs.$define()
+Do ivLstLogs.$cols.$add("Text",kCharacter,kSimplechar)
+
+Quit method

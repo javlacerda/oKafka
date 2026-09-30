@@ -1,0 +1,32 @@
+Begin text block
+Text:{
+Text:"name": "[ivcInstanceId]",
+Text:"format": "binary",
+Text:"auto.offset.reset": "earliest",
+Text:"auto.commit.enable": "false"
+Text:}
+End text block
+Get text block lvcData
+
+Do lvoHttp.$SetHost(ivcServer)
+Do lvoHttp.$SetUri(con("/consumers/",ivcGroupId))
+Do lvoHttp.$AddHeader('Content-Type','application/vnd.kafka.json.v2+json')
+Do lvoHttp.$SetContentFromString(lvcData)
+
+Do lvoHttp.$HttpPost() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponseContent
+If not(lvbOk)
+	Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+	Calculate lvcErrorMessage as con("Http Code: ",lvoHttp.$GetResponseCode(),"//Http Message: ",lvoHttp.$GetMsgErro(),"//Error Code: ",lvRowResponse.error_code,"//Error Message: ",lvRowResponse.message)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Do OJSON.$jsontolistorrow(lvcResponseContent,lvcErrorMessage,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Calculate pRefRowResult as lvRowResponse
+Quit method kTrue

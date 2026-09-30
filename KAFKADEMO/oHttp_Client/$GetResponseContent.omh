@@ -1,0 +1,5 @@
+If isnull(ivRowResponse.responseContent)
+	Quit method ""
+End If
+Calculate lvcResponseContent as utf8tochar(ivRowResponse.responseContent)
+Quit method lvcResponseContent

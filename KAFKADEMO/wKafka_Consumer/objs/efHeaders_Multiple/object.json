@@ -1,6 +1,6 @@
 {
 	"ident": 1154,
-	"order": 49,
+	"order": 48,
 	"objtype": "kEntry",
 	"properties": {
 		"active": true,
@@ -59,7 +59,7 @@
 		"mouseevents": false,
 		"negallowed": false,
 		"nodropcursor": 0,
-		"objlink": 100925476,
+		"objlink": 100925475,
 		"osdropflags": "kOSDROPnone",
 		"passwordchar": "",
 		"pastestripscontrolcharacters": false,

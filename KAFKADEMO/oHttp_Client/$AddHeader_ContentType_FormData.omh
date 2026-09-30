@@ -1,0 +1,2 @@
+Do $cinst.$AddHeader("Content-Type","multipart/form-data")
+Quit method kTrue

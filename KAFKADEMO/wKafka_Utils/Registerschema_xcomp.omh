@@ -1,0 +1,8 @@
+Do lvoUtils.$seturl(ivcSchemaRegistryUrl)
+Do lvoUtils.$registerschema(ivcSubjectRegisterSchema,ivcSchemaStr,lvRowReturn) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoUtils.$geterrormessage(),"Error")
+Else
+	Do $cinst.$showmessage(con("Schema ID: ",lvRowReturn.Id),"Info")
+End If
+Quit method

@@ -1,0 +1,14 @@
+Do ivoData.$GetServerRest(ivcServer)
+Do ivoData.$GetSchemaRegistryServer(ivcSchemaRegistryServer)
+Do ivoData.$GetTopic_Schema(ivcTopic)
+Do ivoData.$GetSchemaStr(ivcSchemaStr)
+Do ivoData.$DefRowSchemaInfo(ivRowSchemaInfoFromSubject)
+Do ivRowSchemaInfoFromId.$copydefinition(ivRowSchemaInfoFromSubject)
+
+Do ivLstSubjects.$define()
+Do ivLstSubjects.$cols.$add("Name",kCharacter,kSimplechar)
+Do ivLstTopics.$copydefinition(ivLstSubjects)
+
+Calculate ivcSubjectGetSchemaFromSubject as con(ivcTopic,"-value")
+Calculate ivcSubjectRegisterSchema as ivcSubjectGetSchemaFromSubject
+Quit method

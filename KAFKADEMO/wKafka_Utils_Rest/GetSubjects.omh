@@ -1,0 +1,23 @@
+Do ivLstSubjects.$clear()
+
+Do lvoHttp.$SetHost(ivcSchemaRegistryServer)
+Do lvoHttp.$SetUri("/subjects")
+
+Do lvoHttp.$HttpGet() Returns lvbOk
+Do lvoHttp.$GetResponseContent() Returns lvcResponse
+
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoHttp.$GetMsgErro(),"Error")
+	Quit method kFalse
+End If
+
+Do OJSON.$jsontolistorrow(lvcResponse,lvcErrorMsg,kTrue) Returns lvLstResponse
+If isnull(lvLstResponse)
+	Do $cwind.$showmessage(lvcErrorMsg,"Error")
+	Quit method kFalse
+End If
+
+Do lvLstResponse.$sendall(ivLstSubjects.$add($sendallref.C1))
+Do ivLstSubjects.$sort($ref.Name)
+Redraw (Refresh now) hlbSubjects
+Quit method

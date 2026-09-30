@@ -1,0 +1,18 @@
+Do lvRowParam.$define()
+Do lvRowParam.$cols.$add("Url",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("Schema",kCharacter,kSimplechar)
+Do lvRowParam.$cols.$add("Subject",kCharacter,kSimplechar)
+
+Calculate lvRowParam.Url as ivcSchemaRegistryUrl
+Calculate lvRowParam.Schema as ivcSchemaStr
+Calculate lvRowParam.Subject as ivcSubjectRegisterSchema
+
+Do ivoKafkaPython.$callmethod("okafka","register_schema",lvRowParam) Returns lvbOk
+If not(lvbOk)
+	Do $ctask.$showmessage(con("Python Worker Error ",ivoKafkaJava.$GetErrorMessage()))
+Else
+	If ivRowResult.Success
+		Do $cinst.$showmessage(con("Schema ID: ",ivRowResult.SchemaId),"Info")
+	End If
+End If
+Quit method

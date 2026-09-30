@@ -1,0 +1,4 @@
+If isnull(ivRowResponse.httpStatusCode)
+	Quit method 0
+End If
+Quit method ivRowResponse.httpStatusCode

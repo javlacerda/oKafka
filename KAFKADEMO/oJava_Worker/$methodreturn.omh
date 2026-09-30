@@ -1,0 +1,9 @@
+Calculate ivbSuccess as kTrue
+Calculate ivRowResult as pResults
+
+If not(isclear(ivRefCallingInstance))
+	If ivRefCallingInstance.$OnJavaSuccess.$cando
+		Do ivRefCallingInstance.$OnJavaSuccess(pResults)
+	End If
+End If
+Quit method

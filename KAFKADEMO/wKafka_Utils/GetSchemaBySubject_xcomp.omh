@@ -1,0 +1,14 @@
+Do lvoUtils.$seturl(ivcSchemaRegistryUrl)
+Do lvoUtils.$getschemabysubject(ivcSubjectGetSchemaFromSubject,lvRowReturn) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoUtils.$geterrormessage(),"Error")
+Else
+	Do ivRowSchemaInfoFromSubject.$clear()
+	Calculate ivRowSchemaInfoFromSubject.Id as lvRowReturn.Id
+	Calculate ivRowSchemaInfoFromSubject.Version as lvRowReturn.Version
+	Calculate ivRowSchemaInfoFromSubject.Type as lvRowReturn.Type
+	Do OJSON.$formatjson(lvRowReturn.Schema) Returns ivRowSchemaInfoFromSubject.Schema
+	
+	Redraw (Refresh now) gbGetSchemaFromSubject
+End If
+Quit method

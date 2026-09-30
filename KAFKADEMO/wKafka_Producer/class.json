@@ -2,20 +2,22 @@
 	"classtype": "kWindow",
 	"omnisversion": "11.1",
 	"omnisbuild": 111037255,
-	"internalversion": 24,
+	"internalversion": 74,
+	"superclass": "wBase",
 	"designtaskname": "Startup_Task",
-	"nextident": 1129,
+	"nextident": 1150,
 	"lastgroupident": 0,
 	"cvardefs": [
 
 	],
 	"ivardefs": [
 		{
-			"name": "ivbSuccess",
-			"order": 2,
+			"name": "ivbInTransaction",
+			"order": 5,
 			"type": "kBoolean",
 			"subtype": 0,
-			"sublen": 0
+			"sublen": 0,
+			"initval": "kFalse"
 		},
 		{
 			"name": "ivcKey",
@@ -26,8 +28,23 @@
 			"initval": "#CT"
 		},
 		{
+			"name": "ivcKeyTransaction",
+			"order": 3,
+			"type": "kCharacter",
+			"subtype": "kSimplechar",
+			"sublen": 100000000,
+			"initval": "#CT"
+		},
+		{
 			"name": "ivcMessage",
 			"order": 8,
+			"type": "kCharacter",
+			"subtype": "kSimplechar",
+			"sublen": 100000000
+		},
+		{
+			"name": "ivcMessageTransaction",
+			"order": 2,
 			"type": "kCharacter",
 			"subtype": "kSimplechar",
 			"sublen": 100000000
@@ -61,15 +78,16 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivLstLogs",
-			"order": 15,
-			"type": "kList",
-			"subtype": "",
-			"sublen": 0
-		},
-		{
 			"name": "ivnPartition",
 			"order": 14,
+			"type": "kInteger",
+			"subtype": "k32bitint",
+			"sublen": 0,
+			"initval": "-1"
+		},
+		{
+			"name": "ivnPartitionTransaction",
+			"order": 4,
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
@@ -89,7 +107,7 @@
 			"type": "kInteger",
 			"subtype": "k32bitint",
 			"sublen": 0,
-			"initval": "60"
+			"initval": "10"
 		},
 		{
 			"name": "ivoData",
@@ -99,17 +117,10 @@
 			"sublen": 0
 		},
 		{
-			"name": "ivoKafkaPython",
+			"name": "ivoProducer",
 			"order": 6,
-			"type": "kObjectref",
-			"subtype": "oPython_Worker",
-			"sublen": 0
-		},
-		{
-			"name": "ivRowResult",
-			"order": 3,
-			"type": "kRow",
-			"subtype": "",
+			"type": "kObject",
+			"subtype": ".MCWKafka.MCWKafka\\MCWKafkaProducer",
 			"sublen": 0
 		}
 	],
@@ -156,14 +167,14 @@
 		"issubwindow": false,
 		"issupercomponent": false,
 		"keepclicks": true,
-		"left": 77,
+		"left": 91,
 		"menuedge": "kBorderNone",
 		"menunames": "",
 		"minheight": 0,
 		"minimizebox": true,
 		"minimizeiconid": 2006,
 		"minwidth": 0,
-		"moddate": "2026-05-12 22:14:03",
+		"moddate": "2026-09-03 14:33:32",
 		"modelessdata": true,
 		"movebehind": true,
 		"osdropflags": "kOSDROPnone",

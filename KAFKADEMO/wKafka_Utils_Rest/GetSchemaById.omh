@@ -1,0 +1,23 @@
+Do lvoHttp.$SetHost(ivcSchemaRegistryServer)
+Do lvoHttp.$SetUri(con("/schemas/ids/",ivnId))
+Do lvoHttp.$AddHeader("Accept","application/vnd.schemaregistry.v1+json,application/vnd.schemaregistry+json,application/json")
+
+Do lvoHttp.$HttpGet() Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoHttp.$GetMsgErro(),"Error")
+	Quit method kFalse
+End If
+
+Do lvoHttp.$GetResponseContent() Returns lvcResponse
+Do OJSON.$jsontolistorrow(lvcResponse,lvcErrorMessage,kTrue) Returns lvRowResponse
+If isnull(lvRowResponse)
+	Do $cwind.$showmessage(lvcErrorMessage,"Error")
+	Quit method kFalse
+End If
+
+Do ivRowSchemaInfoFromId.$clear()
+
+Do OJSON.$formatjson(lvRowResponse.schema) Returns ivRowSchemaInfoFromId.Schema
+
+Redraw (Refresh now) gbGetSchemaFromId
+Quit method kTrue

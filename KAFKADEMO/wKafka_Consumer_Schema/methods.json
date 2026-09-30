@@ -3,7 +3,14 @@
 		"name": "$construct",
 		"order": 1,
 		"pvardefs": [
-
+			{
+				"name": "pnType",
+				"order": 1,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 1
+			}
 		],
 		"lvardefs": [
 
@@ -26,31 +33,11 @@
 
 		],
 		"lvardefs": [
-			{
-				"name": "lvbOk",
-				"order": 3,
-				"type": "kBoolean",
-				"subtype": 0,
-				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 6,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvRowParam",
-				"order": 5,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0
-			}
+
 		]
 	},
 	{
-		"name": "ConsumeOneCommit",
+		"name": "ConsumeOne_Python",
 		"order": 4,
 		"pvardefs": [
 
@@ -64,11 +51,97 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
+				"name": "lvRowParam",
+				"order": 5,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOne_Java",
+		"order": 5,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 5,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOne_xcomp",
+		"order": 6,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstRegs",
+				"order": 4,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
 				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvoConsumer",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroConsumer",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOneCommit",
+		"order": 7,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ConsumeOneCommit_Python",
+		"order": 8,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
 			},
 			{
 				"name": "lvRowParam",
@@ -87,8 +160,85 @@
 		]
 	},
 	{
+		"name": "ConsumeOneCommit_Java",
+		"order": 9,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParamCommit",
+				"order": 4,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOneCommit_xcomp",
+		"order": 10,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstRegs",
+				"order": 4,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 2,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvoConsumer",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroConsumer",
+				"sublen": 0
+			}
+		]
+	},
+	{
 		"name": "ConsumeMultiple",
-		"order": 5,
+		"order": 11,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ConsumeMultiple_Python",
+		"order": 12,
 		"pvardefs": [
 
 		],
@@ -99,13 +249,6 @@
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvLstHeaders",
@@ -131,68 +274,96 @@
 		]
 	},
 	{
-		"name": "$OnPythonError",
-		"order": 6,
+		"name": "ConsumeMultiple_Java",
+		"order": 13,
 		"pvardefs": [
-			{
-				"name": "pError",
-				"order": 1,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
+
 		],
 		"lvardefs": [
 			{
-				"name": "lvcErrorMsg",
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstHeaders",
+				"order": 6,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 3,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
 				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
 			}
 		]
 	},
 	{
-		"name": "$OnPythonSuccess",
-		"order": 7,
+		"name": "ConsumeMultiple_xcomp",
+		"order": 14,
 		"pvardefs": [
-			{
-				"name": "pResult",
-				"order": 3,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0,
-				"param": 1
-			}
+
 		],
 		"lvardefs": [
 			{
-				"name": "lvcFieldName",
+				"name": "lvbOk",
 				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvcErrorMessage",
+				"order": 2,
 				"type": "kCharacter",
 				"subtype": "kSimplechar",
 				"sublen": 100000000
 			},
 			{
-				"name": "lvcMsg",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"name": "lvLstHeaders",
+				"order": 6,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvLstRegs",
+				"order": 7,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
 			},
 			{
 				"name": "lvnLoop",
-				"order": 2,
+				"order": 3,
 				"type": "kInteger",
 				"subtype": "k32bitint",
+				"sublen": 0
+			},
+			{
+				"name": "lvoConsumer",
+				"order": 1,
+				"type": "kObject",
+				"subtype": ".MCWKafka.MCWKafka\\MCWKafkaAvroConsumer",
 				"sublen": 0
 			}
 		]
 	},
 	{
 		"name": "ClearLogs",
-		"order": 8,
+		"order": 15,
 		"pvardefs": [
 
 		],
@@ -202,7 +373,7 @@
 	},
 	{
 		"name": "AddLineConfig",
-		"order": 9,
+		"order": 16,
 		"pvardefs": [
 
 		],
@@ -212,47 +383,17 @@
 	},
 	{
 		"name": "DelLineConfig",
-		"order": 10,
+		"order": 17,
 		"pvardefs": [
 
 		],
 		"lvardefs": [
 
-		]
-	},
-	{
-		"name": "SetTimeout",
-		"order": 11,
-		"pvardefs": [
-
-		],
-		"lvardefs": [
-			{
-				"name": "lvbOk",
-				"order": 3,
-				"type": "kBoolean",
-				"subtype": 0,
-				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 2,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
-			},
-			{
-				"name": "lvRowParam",
-				"order": 1,
-				"type": "kRow",
-				"subtype": "",
-				"sublen": 0
-			}
 		]
 	},
 	{
 		"name": "CreateRowParam",
-		"order": 12,
+		"order": 18,
 		"pvardefs": [
 			{
 				"name": "pRefRowParam",
@@ -269,7 +410,7 @@
 	},
 	{
 		"name": "ViewHeaders",
-		"order": 13,
+		"order": 19,
 		"pvardefs": [
 			{
 				"name": "pRefLstMessages",
@@ -286,17 +427,23 @@
 	},
 	{
 		"name": "FillRowMessage",
-		"order": 14,
+		"order": 20,
 		"pvardefs": [
 
 		],
 		"lvardefs": [
-
+			{
+				"name": "lvcErrorMessage",
+				"order": 1,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			}
 		]
 	},
 	{
 		"name": "FillLstHeaders",
-		"order": 15,
+		"order": 21,
 		"pvardefs": [
 			{
 				"name": "pRefLstHeaders",
@@ -316,15 +463,15 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvRefLstItem",
-				"order": 3,
+				"name": "lvRefHeaders",
+				"order": 4,
 				"type": "kItemref",
 				"subtype": "",
 				"sublen": 0
 			},
 			{
-				"name": "lvRefRowHeaders",
-				"order": 1,
+				"name": "lvRefLstItem",
+				"order": 3,
 				"type": "kItemref",
 				"subtype": "",
 				"sublen": 0
@@ -333,7 +480,17 @@
 	},
 	{
 		"name": "ConsumeOcc_Open",
-		"order": 16,
+		"order": 22,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ConsumeOcc_Open_Python",
+		"order": 23,
 		"pvardefs": [
 
 		],
@@ -344,13 +501,6 @@
 				"type": "kBoolean",
 				"subtype": 0,
 				"sublen": 0
-			},
-			{
-				"name": "lvcErrorText",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
 			},
 			{
 				"name": "lvLstHeaders",
@@ -369,8 +519,8 @@
 		]
 	},
 	{
-		"name": "ConsumeOcc_Consume",
-		"order": 17,
+		"name": "ConsumeOcc_Open_Java",
+		"order": 24,
 		"pvardefs": [
 
 		],
@@ -383,11 +533,67 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"name": "lvLstHeaders",
+				"order": 6,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_Open_xcomp",
+		"order": 25,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvnLoop",
+				"order": 3,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_Consume",
+		"order": 26,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ConsumeOcc_Consume_Python",
+		"order": 27,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
 			},
 			{
 				"name": "lvLstHeaders",
@@ -400,6 +606,73 @@
 				"name": "lvRowParam",
 				"order": 2,
 				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_Consume_Java",
+		"order": 28,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvLstHeaders",
+				"order": 6,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_Consume_xcomp",
+		"order": 29,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvcErrorMEssage",
+				"order": 1,
+				"type": "kCharacter",
+				"subtype": "kSimplechar",
+				"sublen": 100000000
+			},
+			{
+				"name": "lvLstHeaders",
+				"order": 6,
+				"type": "kList",
+				"subtype": "",
+				"sublen": 0
+			},
+			{
+				"name": "lvLstRegs",
+				"order": 3,
+				"type": "kList",
 				"subtype": "",
 				"sublen": 0
 			}
@@ -407,7 +680,17 @@
 	},
 	{
 		"name": "ConsumeOcc_Close",
-		"order": 18,
+		"order": 30,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "ConsumeOcc_Close_Python",
+		"order": 31,
 		"pvardefs": [
 
 		],
@@ -420,11 +703,27 @@
 				"sublen": 0
 			},
 			{
-				"name": "lvcErrorText",
-				"order": 5,
-				"type": "kCharacter",
-				"subtype": "kSimplechar",
-				"sublen": 100000000
+				"name": "lvRowParam",
+				"order": 2,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_Close_Java",
+		"order": 32,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 4,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
 			},
 			{
 				"name": "lvRowParam",
@@ -436,13 +735,164 @@
 		]
 	},
 	{
-		"name": "DefBtnsConsumeOcc",
-		"order": 19,
+		"name": "ConsumeOcc_Close_xcomp",
+		"order": 33,
 		"pvardefs": [
 
 		],
 		"lvardefs": [
 
+		]
+	},
+	{
+		"name": "DefBtnsConsumeOcc",
+		"order": 34,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		]
+	},
+	{
+		"name": "_",
+		"order": 35,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+
+		],
+		"empty": true
+	},
+	{
+		"name": "ConsumeOcc_CommitOffset",
+		"order": 36,
+		"pvardefs": [
+
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvnLastLine",
+				"order": 4,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_CommitOffset_Python",
+		"order": 37,
+		"pvardefs": [
+			{
+				"name": "pnOffset",
+				"order": 5,
+				"type": "kInteger",
+				"subtype": "k64bitint",
+				"sublen": 0,
+				"param": 1
+			},
+			{
+				"name": "pnPartition",
+				"order": 6,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 2
+			}
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParamCommit",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_CommitOffset_Java",
+		"order": 38,
+		"pvardefs": [
+			{
+				"name": "pnOffset",
+				"order": 5,
+				"type": "kInteger",
+				"subtype": "k64bitint",
+				"sublen": 0,
+				"param": 1
+			},
+			{
+				"name": "pnPartition",
+				"order": 6,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 2
+			}
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			},
+			{
+				"name": "lvRowParamCommit",
+				"order": 1,
+				"type": "kRow",
+				"subtype": "",
+				"sublen": 0
+			}
+		]
+	},
+	{
+		"name": "ConsumeOcc_CommitOffset_xcomp",
+		"order": 39,
+		"pvardefs": [
+			{
+				"name": "pnOffset",
+				"order": 5,
+				"type": "kInteger",
+				"subtype": "k64bitint",
+				"sublen": 0,
+				"param": 1
+			},
+			{
+				"name": "pnPartition",
+				"order": 6,
+				"type": "kInteger",
+				"subtype": "k32bitint",
+				"sublen": 0,
+				"param": 2
+			}
+		],
+		"lvardefs": [
+			{
+				"name": "lvbOk",
+				"order": 3,
+				"type": "kBoolean",
+				"subtype": 0,
+				"sublen": 0
+			}
 		]
 	}
 ]

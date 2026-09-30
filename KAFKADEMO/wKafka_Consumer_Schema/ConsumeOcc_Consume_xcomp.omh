@@ -1,0 +1,29 @@
+Do ivoConsumer.$consume(1,ivnTimeout*1000,lvLstRegs) Returns lvbOk
+If lvbOk
+	If lvLstRegs.$linecount>0
+		Calculate lvLstRegs.$line as 1
+		Do ivLstMessagesOcc.$add()
+		Calculate ivLstMessagesOcc.$line as ivLstMessagesOcc.$linecount
+		Calculate ivLstMessagesOcc.Offset as lvLstRegs.Offset
+		Calculate ivLstMessagesOcc.Partition as lvLstRegs.Partition
+		Calculate ivLstMessagesOcc.Topic as lvLstRegs.Topic
+		Calculate ivLstMessagesOcc.Key as lvLstRegs.Key
+		Calculate ivLstMessagesOcc.Timestamp as lvLstRegs.Timestamp
+		Do OJSON.$jsontolistorrow(lvLstRegs.Message,lvcErrorMEssage,kTrue) Returns ivLstMessagesOcc.Message
+		If isnull(ivLstMessagesOcc.Message)
+			Do $cwind.$showmessage(lvcErrorMEssage,"Error")
+			Quit method
+		End If
+		
+		Do lvLstHeaders.$clear()
+		Do method FillLstHeaders (lvLstHeaders)
+		Calculate ivLstMessagesOcc.Headers as lvLstHeaders
+	Else
+		Do $cwind.$showmessage("No messages!")
+	End If
+Else
+	Do $cwind.$showmessage(ivoConsumer.$geterrormessage(),"Error")
+End If
+
+Redraw (Refresh now) cgMessagesOcc
+Quit method

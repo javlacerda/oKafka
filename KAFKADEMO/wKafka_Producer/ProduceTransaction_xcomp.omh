@@ -1,0 +1,7 @@
+Do ivoProducer.$produce(ivcMessageTransaction,ivcKeyTransaction,ivnPartitionTransaction,#NULL,lvRowReturn) Returns lvbOk
+If lvbOk
+	Do $cwind.$showmessage(con("Success!// //Offset: ",lvRowReturn.Offset,"//Partition: ",lvRowReturn.Partition,"//Timestamp: ",omnistoiso8601(lvRowReturn.Timestamp,kTrue)),"Info",kMsgIcon)
+Else
+	Do $cwind.$showmessage(ivoProducer.$geterrormessage(),"Error")
+End If
+Quit method lvbOk

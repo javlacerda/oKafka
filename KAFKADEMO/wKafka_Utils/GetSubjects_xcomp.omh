@@ -1,0 +1,16 @@
+Do ivLstSubjects.$clear()
+
+Do lvoUtils.$seturl(ivcSchemaRegistryUrl)
+Do lvoUtils.$getsubjects(lvLstSubjects) Returns lvbOk
+If not(lvbOk)
+	Do $cwind.$showmessage(lvoUtils.$geterrormessage(),"Error")
+Else
+	For lvLstSubjects.$line from 1 to lvLstSubjects.$linecount step 1
+		Do ivLstSubjects.$add(lvLstSubjects.C1)
+	End For
+	
+	Do $cwind.$showmessage(con(ivLstSubjects.$linecount," subjects retrieved!"),"Info",kMsgIcon)
+End If
+
+Redraw (Refresh now) hlbSubjects
+Quit method

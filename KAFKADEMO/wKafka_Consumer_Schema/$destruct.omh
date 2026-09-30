@@ -1,1 +1,6 @@
-# Enter your termination code here
+If ivbConsumerOpen
+	Do method ConsumeOcc_Close
+End If
+
+Do inherited
+Quit method

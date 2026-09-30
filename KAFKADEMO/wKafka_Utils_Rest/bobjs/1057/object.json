@@ -1,0 +1,33 @@
+{
+	"ident": 1057,
+	"order": 16387,
+	"objtype": "kLabel",
+	"properties": {
+		"align": "kLeftJst",
+		"backcolor": "RGBA(kColorBackFill,255)",
+		"backpattern": 15,
+		"bordercolor": "RGBA(0,0,0,255)",
+		"componentinfo": {
+
+		},
+		"designactive": true,
+		"edgefloat": "kEFnone",
+		"effect": "kBorderNone",
+		"fieldstyle": "CtrlLabel",
+		"font": 4,
+		"fontsize": 0,
+		"fontstyle": "kPlain",
+		"forecolor": "RGBA(kColorForeFill,255)",
+		"height": 26,
+		"left": 6,
+		"linestyle": 1,
+		"objlink": 2,
+		"text": "Topic",
+		"textcolor": "kColorWindowText",
+		"top": 100,
+		"userinfo": "",
+		"vertcentertext": false,
+		"visible": true,
+		"width": 120
+	}
+}
